@@ -1,0 +1,42 @@
+name: Build Substrate Node
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y protobuf-compiler clang llvm-dev protobuf-compiler libclang-dev
+
+    - name: Install Rust
+      run: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        source $HOME/.cargo/env
+        echo "source $HOME/.cargo/env" >> $HOME/.bashrc
+
+    - name: Install WASM target
+      run: |
+        source $HOME/.cargo/env
+        rustup target add wasm32-unknown-unknown
+        rustup component add rust-src
+  
+    - name: Build Substrate Node
+      run: |
+        source $HOME/.cargo/env
+        cargo build --release --features testnet
+        mv target/release/main-node main-node
+
+    - name: Upload Binary to GitHub Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      run: |
+        gh release upload ${{ github.event.release.tag_name }} main-node --repo ${{ github.repository }}
