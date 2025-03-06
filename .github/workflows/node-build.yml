@@ -33,7 +33,7 @@ jobs:
       run: |
         source $HOME/.cargo/env
         cargo build --release --features testnet
-        mv target/release/main-node main-node
+        mv target/release/substrate main-node
 
     - name: Upload Binary to GitHub Release
       env:
