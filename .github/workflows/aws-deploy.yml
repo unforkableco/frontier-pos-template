@@ -50,27 +50,3 @@ jobs:
         echo "Waiting for AWS instance to be ready..."
         aws ec2 wait instance-status-ok --instance-ids $NODE_INSTANCE_ID
         echo "AWS instance is now running."
-
-    - name: Setup SSH Key
-      run: |
-          mkdir -p ~/.ssh  # Ensure the directory exists
-          echo "${{ secrets.AWS_SSH_PRIVATE_KEY }}" > ~/.ssh/my-key.pem
-          chmod 600 ~/.ssh/my-key.pem
-  
-
-    - name: Log in to AWS Instance & Deploy Node
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ${{ secrets.AWS_REGION }}
-      run: |
-        echo "Logging into AWS Instance..."
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/my-key.pem ubuntu@$NODE_PUBLIC_IP <<EOF
-          echo "Downloading latest Substrate node binary..."
-          wget -O main-node https://github.com/${{ github.repository }}/releases/download/${{ inputs.release_version }}/main-node
-          chmod +x main-node
-          sudo mv main-node /usr/local/bin/substrate-node
-          
-          echo "Starting Substrate node..."
-          sudo systemctl restart substrate-node
-        EOF
