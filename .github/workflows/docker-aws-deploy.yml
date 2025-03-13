@@ -1,0 +1,67 @@
+name: Deploy Dockerized Substrate Node on AWS
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: "Release version to deploy (e.g., v1.0.0)"
+        required: true
+
+jobs:
+  deploy-docker-node:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Create AWS EC2 instance for the dockerized node
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+      run: |
+        INSTANCE_ID=$(aws ec2 run-instances \
+          --image-id ami-04b4f1a9cf54c11d0 \
+          --count 1 \
+          --instance-type t3.medium \
+          --security-group-ids sg-0442d41440d018db1 \
+          --key-name unforkable \
+          --user-data file://scripts/setup_docker_node.sh \
+          --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=substrate-docker-${{ inputs.release_version }}},{Key=Project,Value=SubstrateDockerNode}]" \
+          --query "Instances[0].InstanceId" --output text)
+        
+        echo "NODE_INSTANCE_ID=$INSTANCE_ID" >> $GITHUB_ENV
+        echo "New AWS EC2 instance created with ID: $INSTANCE_ID"
+
+    - name: Get Public IP of the Instance
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+      run: |
+        PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $NODE_INSTANCE_ID --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
+        echo "NODE_PUBLIC_IP=$PUBLIC_IP" >> $GITHUB_ENV
+        echo "AWS Instance Public IP: $PUBLIC_IP"
+
+    - name: Wait for Instance to Be Ready
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+      run: |
+        echo "Waiting for AWS instance to be ready..."
+        aws ec2 wait instance-status-ok --instance-ids $NODE_INSTANCE_ID
+        echo "AWS instance is now running."
+
+    - name: Output Node Information
+      run: |
+        echo "::set-output name=node_ip::$NODE_PUBLIC_IP"
+        echo "::set-output name=release_version::${{ inputs.release_version }}"
+        
+        echo "✅ Deployment complete!"
+        echo "Node IP: $NODE_PUBLIC_IP"
+        echo "Alice RPC Endpoint: ws://$NODE_PUBLIC_IP:9944"
+        echo "Bob RPC Endpoint: ws://$NODE_PUBLIC_IP:8545"
+        echo "Alice P2P Endpoint: /ip4/$NODE_PUBLIC_IP/tcp/30333"
+        echo "Bob P2P Endpoint: /ip4/$NODE_PUBLIC_IP/tcp/30334" 
