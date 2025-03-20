@@ -1,0 +1,131 @@
+2025-03-13 22:56:00,548 - INFO - Starting active wallets fetch
+2025-03-13 22:56:00,548 - INFO - Rate limit: 30 requests per minute
+2025-03-13 22:56:00,548 - INFO - Items per page: 1000
+2025-03-13 22:56:00,548 - INFO - Fetching transactions (page 1)...
+2025-03-13 22:56:01,396 - INFO - Fetched 1000 transactions from page 1
+2025-03-13 22:56:01,396 - INFO - Fetching transactions (page 2)...
+2025-03-13 22:56:08,768 - INFO - Fetched 1000 transactions from page 2
+2025-03-13 22:56:08,768 - INFO - Fetching transactions (page 3)...
+2025-03-13 22:56:09,431 - INFO - Fetched 1000 transactions from page 3
+2025-03-13 22:56:09,432 - INFO - Fetching transactions (page 4)...
+2025-03-13 22:56:09,931 - INFO - Fetched 608 transactions from page 4
+2025-03-13 22:56:09,931 - INFO - Last page reached (4)
+2025-03-13 22:56:09,931 - INFO - Fetched a total of 3608 transactions
+2025-03-13 22:56:09,931 - INFO - Extracting active wallet addresses from transactions...
+2025-03-13 22:56:09,938 - INFO - Found 608 unique active wallet addresses
+2025-03-13 22:56:09,939 - INFO - Saved 608 active wallet addresses to active_wallets.json
+2025-03-13 22:56:09,939 - INFO - Active wallets fetch completed successfully
+2025-03-13 22:58:50,684 - INFO - Starting active wallets fetch
+2025-03-13 22:58:50,684 - INFO - Rate limit: 30 requests per minute
+2025-03-13 22:58:50,684 - INFO - Items per page: 1000
+2025-03-13 22:58:50,684 - INFO - MultiSend contract address: 0xF42fd95790C20F930E56847b8e29a9b5273052E7
+2025-03-13 22:58:50,684 - INFO - Fetching transactions (page 1)...
+2025-03-13 22:58:51,437 - INFO - Fetched 1000 transactions from page 1
+2025-03-13 22:58:51,438 - INFO - Fetching transactions (page 2)...
+2025-03-13 22:58:51,880 - INFO - Fetched 1000 transactions from page 2
+2025-03-13 22:58:51,880 - INFO - Fetching transactions (page 3)...
+2025-03-13 22:58:52,478 - INFO - Fetched 1000 transactions from page 3
+2025-03-13 22:58:52,479 - INFO - Fetching transactions (page 4)...
+2025-03-13 22:58:52,923 - INFO - Fetched 608 transactions from page 4
+2025-03-13 22:58:52,923 - INFO - Last page reached (4)
+2025-03-13 22:58:52,923 - INFO - Fetched a total of 3608 transactions
+2025-03-13 22:58:52,923 - INFO - Extracting active wallet addresses from transactions...
+2025-03-13 22:58:52,935 - INFO - Found 783 unique active wallet addresses
+2025-03-13 22:58:52,935 - INFO - Processed 5 MultiSend transactions with 1135 recipient addresses
+2025-03-13 22:58:52,935 - INFO - Saved 783 active wallet addresses to active_wallets_with_multisend.json
+2025-03-13 22:58:52,935 - INFO - Active wallets fetch completed successfully
+2025-03-13 23:02:18,868 - INFO - Starting active wallets fetch
+2025-03-13 23:02:18,869 - INFO - Rate limit: 30 requests per minute
+2025-03-13 23:02:18,869 - INFO - Items per page: 1000
+2025-03-13 23:02:18,869 - INFO - MultiSend contract address: 0xF42fd95790C20F930E56847b8e29a9b5273052E7
+2025-03-13 23:02:18,869 - INFO - Will fetch CXS balances from RPC: https://rpc.nxchainscan.com/
+2025-03-13 23:02:18,869 - INFO - Fetching transactions (page 1)...
+2025-03-13 23:02:19,673 - INFO - Fetched 1000 transactions from page 1
+2025-03-13 23:02:19,673 - INFO - Fetching transactions (page 2)...
+2025-03-13 23:02:20,173 - INFO - Fetched 1000 transactions from page 2
+2025-03-13 23:02:20,173 - INFO - Fetching transactions (page 3)...
+2025-03-13 23:02:20,755 - INFO - Fetched 1000 transactions from page 3
+2025-03-13 23:02:20,755 - INFO - Fetching transactions (page 4)...
+2025-03-13 23:02:21,220 - INFO - Fetched 608 transactions from page 4
+2025-03-13 23:02:21,220 - INFO - Last page reached (4)
+2025-03-13 23:02:21,220 - INFO - Fetched a total of 3608 transactions
+2025-03-13 23:02:21,220 - INFO - Extracting active wallet addresses from transactions...
+2025-03-13 23:02:21,230 - INFO - Found 783 unique active wallet addresses
+2025-03-13 23:02:21,230 - INFO - Processed 5 MultiSend transactions with 1135 recipient addresses
+2025-03-13 23:02:21,230 - INFO - Fetching CXS balances for 783 addresses from https://rpc.nxchainscan.com/
+2025-03-13 23:02:21,231 - ERROR - Error connecting to RPC endpoint: 'Web3' object has no attribute 'is_connected'
+2025-03-13 23:02:21,231 - ERROR - Failed to fetch balances
+2025-03-13 23:02:21,231 - INFO - Saved 783 active wallet addresses to active_wallets_with_balances.json
+2025-03-13 23:02:21,232 - INFO - Active wallets fetch completed successfully
+2025-03-13 23:02:43,548 - INFO - Starting active wallets fetch
+2025-03-13 23:02:43,548 - INFO - Rate limit: 30 requests per minute
+2025-03-13 23:02:43,548 - INFO - Items per page: 1000
+2025-03-13 23:02:43,548 - INFO - MultiSend contract address: 0xF42fd95790C20F930E56847b8e29a9b5273052E7
+2025-03-13 23:02:43,548 - INFO - Will fetch CXS balances from RPC: https://rpc.nxchainscan.com/
+2025-03-13 23:02:43,548 - INFO - Fetching transactions (page 1)...
+2025-03-13 23:02:44,392 - INFO - Fetched 1000 transactions from page 1
+2025-03-13 23:02:44,393 - INFO - Fetching transactions (page 2)...
+2025-03-13 23:02:44,955 - INFO - Fetched 1000 transactions from page 2
+2025-03-13 23:02:44,956 - INFO - Fetching transactions (page 3)...
+2025-03-13 23:02:45,538 - INFO - Fetched 1000 transactions from page 3
+2025-03-13 23:02:45,538 - INFO - Fetching transactions (page 4)...
+2025-03-13 23:02:46,008 - INFO - Fetched 608 transactions from page 4
+2025-03-13 23:02:46,008 - INFO - Last page reached (4)
+2025-03-13 23:02:46,008 - INFO - Fetched a total of 3608 transactions
+2025-03-13 23:02:46,008 - INFO - Extracting active wallet addresses from transactions...
+2025-03-13 23:02:46,015 - INFO - Found 783 unique active wallet addresses
+2025-03-13 23:02:46,015 - INFO - Processed 5 MultiSend transactions with 1135 recipient addresses
+2025-03-13 23:02:46,015 - INFO - Fetching CXS balances for 783 addresses from https://rpc.nxchainscan.com/
+2025-03-13 23:02:46,400 - INFO - Connected to RPC endpoint: https://rpc.nxchainscan.com/ (current block: 21961040)
+2025-03-13 23:02:46,401 - ERROR - Error fetching balance for 0x7afb2261ca68047aa24fb66595065e00a723026f: type object 'Web3' has no attribute 'to_checksum_address'
+2025-03-13 23:02:48,403 - ERROR - Error fetching balance for 0xb0d55260dcf663f5ed6d11995079de76066aaaae: type object 'Web3' has no attribute 'to_checksum_address'
+2025-03-13 23:02:50,404 - ERROR - Error fetching balance for 0xb4d55a635e840a4f541a67396aa23fd24ccf5dbc: type object 'Web3' has no attribute 'to_checksum_address'
+2025-03-13 23:02:52,406 - ERROR - Error fetching balance for 0x47f946e4e81ff5b1b302f760c4d9b31f399baf38: type object 'Web3' has no attribute 'to_checksum_address'
+2025-03-13 23:02:54,408 - ERROR - Error fetching balance for 0xf6623cb366101b9220d0afd30231befe429e28ec: type object 'Web3' has no attribute 'to_checksum_address'
+2025-03-13 23:02:56,410 - ERROR - Error fetching balance for 0xb813dc5e24698c8999a9c6d299380661ba08fcaa: type object 'Web3' has no attribute 'to_checksum_address'
+2025-03-13 23:02:58,412 - ERROR - Error fetching balance for 0xcdf9495492f9c1a58ab53576454ce54ea8c9bd6f: type object 'Web3' has no attribute 'to_checksum_address'
+2025-03-13 23:03:00,414 - ERROR - Error fetching balance for 0x344daaf950367e5543f41bb9a5cd277fdabc98a3: type object 'Web3' has no attribute 'to_checksum_address'
+2025-03-13 23:03:02,416 - ERROR - Error fetching balance for 0x1fd340549b1297c99f4ff9c03f27ac015346ab1a: type object 'Web3' has no attribute 'to_checksum_address'
+2025-03-13 23:03:03,425 - INFO - Shutdown requested. Completing current batch and saving progress...
+2025-03-13 23:03:04,417 - ERROR - Error fetching balance for 0xd955b402a1e0b89cb9e913c8c6dfab97f19acec9: type object 'Web3' has no attribute 'to_checksum_address'
+2025-03-13 23:03:04,418 - INFO - Shutdown requested. Saving current progress...
+2025-03-13 23:03:04,418 - INFO - Fetched balances for 10/783 addresses
+2025-03-13 23:03:04,418 - INFO - Found 0 addresses with non-zero balances
+2025-03-13 23:03:04,418 - INFO - Total CXS balance: 0
+2025-03-13 23:03:04,421 - INFO - Saved 783 active wallet addresses with balances to active_wallets_with_balances.json
+2025-03-13 23:03:04,421 - INFO - Active wallets fetch completed successfully
+2025-03-13 23:04:25,781 - INFO - Starting active wallets fetch
+2025-03-13 23:04:25,781 - INFO - Rate limit: 30 requests per minute
+2025-03-13 23:04:25,781 - INFO - Items per page: 1000
+2025-03-13 23:04:25,781 - INFO - MultiSend contract address: 0xF42fd95790C20F930E56847b8e29a9b5273052E7
+2025-03-13 23:04:25,781 - INFO - Will fetch CXS balances from RPC: https://rpc.nxchainscan.com/
+2025-03-13 23:04:25,781 - INFO - Fetching transactions (page 1)...
+2025-03-13 23:04:26,603 - INFO - Fetched 1000 transactions from page 1
+2025-03-13 23:04:26,603 - INFO - Fetching transactions (page 2)...
+2025-03-13 23:04:27,169 - INFO - Fetched 1000 transactions from page 2
+2025-03-13 23:04:27,170 - INFO - Fetching transactions (page 3)...
+2025-03-13 23:04:27,859 - INFO - Fetched 1000 transactions from page 3
+2025-03-13 23:04:27,859 - INFO - Fetching transactions (page 4)...
+2025-03-13 23:04:28,272 - INFO - Fetched 608 transactions from page 4
+2025-03-13 23:04:28,273 - INFO - Last page reached (4)
+2025-03-13 23:04:28,273 - INFO - Fetched a total of 3608 transactions
+2025-03-13 23:04:28,273 - INFO - Extracting active wallet addresses from transactions...
+2025-03-13 23:04:28,282 - INFO - Found 783 unique active wallet addresses
+2025-03-13 23:04:28,283 - INFO - Processed 5 MultiSend transactions with 1135 recipient addresses
+2025-03-13 23:04:28,283 - INFO - Fetching CXS balances for 783 addresses from https://rpc.nxchainscan.com/
+2025-03-13 23:04:28,654 - INFO - Connected to RPC endpoint: https://rpc.nxchainscan.com/ (current block: 21961055)
+2025-03-13 23:06:06,843 - INFO - Saved intermediate results for 50/783 addresses to active_wallets_with_balances.json_intermediate_50.json
+2025-03-13 23:06:30,903 - INFO - Shutdown requested. Completing current batch and saving progress...
+2025-03-13 23:06:32,868 - INFO - Shutdown requested. Saving current progress...
+2025-03-13 23:06:32,868 - INFO - Fetched balances for 63/783 addresses
+2025-03-13 23:06:32,868 - INFO - Found 35 addresses with non-zero balances
+2025-03-13 23:06:32,868 - INFO - Total CXS balance: 42220959.436041109769628120
+2025-03-13 23:06:32,871 - INFO - Saved 783 active wallet addresses with balances to active_wallets_with_balances.json
+2025-03-13 23:06:32,871 - INFO - Active wallets fetch completed successfully
+2025-03-13 23:06:48,009 - INFO - Starting active wallets fetch
+2025-03-13 23:06:48,009 - INFO - Rate limit: 30 requests per minute
+2025-03-13 23:06:48,009 - INFO - Items per page: 1000
+2025-03-13 23:06:48,009 - INFO - MultiSend contract address: 0xF42fd95790C20F930E56847b8e29a9b5273052E7
+2025-03-13 23:06:48,010 - INFO - Resuming with 50 addresses and 50 balances from active_wallets_with_balances.json_intermediate_50.json
+2025-03-13 23:06:48,010 - INFO - Saved 50 active wallet addresses with balances to active_wallets_with_balances_20250313_230648.json
+2025-03-13 23:06:48,010 - INFO - Balance fetch completed successfully

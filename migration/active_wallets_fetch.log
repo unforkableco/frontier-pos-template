@@ -1,0 +1,40 @@
+2025-03-13 23:07:10,741 - INFO - Starting active wallets fetch
+2025-03-13 23:07:10,741 - INFO - Rate limit: 30 requests per minute
+2025-03-13 23:07:10,742 - INFO - Items per page: 1000
+2025-03-13 23:07:10,742 - INFO - MultiSend contract address: 0xF42fd95790C20F930E56847b8e29a9b5273052E7
+2025-03-13 23:07:10,742 - INFO - Will fetch CXS balances from RPC: https://rpc.nxchainscan.com/
+2025-03-13 23:07:10,742 - INFO - Fetching transactions (page 1)...
+2025-03-13 23:07:11,517 - INFO - Fetched 1000 transactions from page 1
+2025-03-13 23:07:11,518 - INFO - Fetching transactions (page 2)...
+2025-03-13 23:07:12,008 - INFO - Fetched 1000 transactions from page 2
+2025-03-13 23:07:12,008 - INFO - Fetching transactions (page 3)...
+2025-03-13 23:07:12,659 - INFO - Fetched 1000 transactions from page 3
+2025-03-13 23:07:12,659 - INFO - Fetching transactions (page 4)...
+2025-03-13 23:07:13,099 - INFO - Fetched 608 transactions from page 4
+2025-03-13 23:07:13,099 - INFO - Last page reached (4)
+2025-03-13 23:07:13,099 - INFO - Fetched a total of 3608 transactions
+2025-03-13 23:07:13,099 - INFO - Extracting active wallet addresses from transactions...
+2025-03-13 23:07:13,106 - INFO - Found 783 unique active wallet addresses
+2025-03-13 23:07:13,106 - INFO - Processed 5 MultiSend transactions with 1135 recipient addresses
+2025-03-13 23:07:13,106 - INFO - Fetching CXS balances for 783 addresses from https://rpc.nxchainscan.com/
+2025-03-13 23:07:13,488 - INFO - Connected to RPC endpoint: https://rpc.nxchainscan.com/ (current block: 21961080)
+2025-03-13 23:08:51,678 - INFO - Saved intermediate results for 50/783 addresses to active_wallets_with_balances.json_intermediate_50.json
+2025-03-13 23:10:31,781 - INFO - Saved intermediate results for 100/783 addresses to active_wallets_with_balances.json_intermediate_100.json
+2025-03-13 23:12:11,875 - INFO - Saved intermediate results for 150/783 addresses to active_wallets_with_balances.json_intermediate_150.json
+2025-03-13 23:13:51,974 - INFO - Saved intermediate results for 200/783 addresses to active_wallets_with_balances.json_intermediate_200.json
+2025-03-13 23:15:32,066 - INFO - Saved intermediate results for 250/783 addresses to active_wallets_with_balances.json_intermediate_250.json
+2025-03-13 23:17:12,164 - INFO - Saved intermediate results for 300/783 addresses to active_wallets_with_balances.json_intermediate_300.json
+2025-03-13 23:18:52,263 - INFO - Saved intermediate results for 350/783 addresses to active_wallets_with_balances.json_intermediate_350.json
+2025-03-13 23:20:32,359 - INFO - Saved intermediate results for 400/783 addresses to active_wallets_with_balances.json_intermediate_400.json
+2025-03-13 23:22:12,460 - INFO - Saved intermediate results for 450/783 addresses to active_wallets_with_balances.json_intermediate_450.json
+2025-03-13 23:23:52,557 - INFO - Saved intermediate results for 500/783 addresses to active_wallets_with_balances.json_intermediate_500.json
+2025-03-13 23:25:32,654 - INFO - Saved intermediate results for 550/783 addresses to active_wallets_with_balances.json_intermediate_550.json
+2025-03-13 23:27:12,754 - INFO - Saved intermediate results for 600/783 addresses to active_wallets_with_balances.json_intermediate_600.json
+2025-03-13 23:28:52,851 - INFO - Saved intermediate results for 650/783 addresses to active_wallets_with_balances.json_intermediate_650.json
+2025-03-13 23:30:32,949 - INFO - Saved intermediate results for 700/783 addresses to active_wallets_with_balances.json_intermediate_700.json
+2025-03-13 23:32:13,049 - INFO - Saved intermediate results for 750/783 addresses to active_wallets_with_balances.json_intermediate_750.json
+2025-03-13 23:33:19,109 - INFO - Fetched balances for 783/783 addresses
+2025-03-13 23:33:19,109 - INFO - Found 498 addresses with non-zero balances
+2025-03-13 23:33:19,109 - INFO - Total CXS balance: 763397342.308653726451438391
+2025-03-13 23:33:19,112 - INFO - Saved 783 active wallet addresses with balances to active_wallets_with_balances.json
+2025-03-13 23:33:19,112 - INFO - Active wallets fetch completed successfully

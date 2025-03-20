@@ -1,0 +1,210 @@
+{
+  "metadata": {
+    "timestamp": "2025-03-13 23:06:48",
+    "total_wallets": 50,
+    "wallets_with_balance": 28,
+    "total_balance": "42096331.862202716308344916"
+  },
+  "wallets": {
+    "0xd955b402a1e0b89cb9e913c8c6dfab97f19acec9": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0xd0074bce7cbc39621c51aca5c10d1d28d266b826": {
+      "balance_wei": "2537126516995244",
+      "balance": "0.002537126516995244"
+    },
+    "0x019ff912eaba7286542c6f0ea42fce05d524c9a2": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0xb95388c2f4abc3c67a00ab14375f7055ae2ff476": {
+      "balance_wei": "22028431718061674008810",
+      "balance": "22028.43171806167400881"
+    },
+    "0x87178b8fd7320c18fa9066297ff9d8ca52c325db": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x44f701a49d2086b8213337d8c38fe18acd28a24f": {
+      "balance_wei": "22027431718061674008810",
+      "balance": "22027.43171806167400881"
+    },
+    "0xa18d4ed84789a8e56f8227fb2ed439e3ab217be4": {
+      "balance_wei": "39999999000000000000000000",
+      "balance": "39999999"
+    },
+    "0x58552179c23bbf1b59f39e236fb795cb260202a1": {
+      "balance_wei": "64108738510889524",
+      "balance": "0.064108738510889524"
+    },
+    "0x27d9bef20d89dcd84f96f94039aa618bce39f36e": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x600793ef803e64479a87dca5d9492ca7ec7a5853": {
+      "balance_wei": "66428431718061674008810",
+      "balance": "66428.43171806167400881"
+    },
+    "0x2ad208a932879351789c9336d199ad50968d2490": {
+      "balance_wei": "29026530034820959130126",
+      "balance": "29026.530034820959130126"
+    },
+    "0x40719a68538b1718b55b95f0442822ab332fb958": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x1b0bffd75aa6735c1bfc9f175997da0dbdc513aa": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x3411ec56732cb4d9267f94074b7bac46f2e5e519": {
+      "balance_wei": "657359576969745",
+      "balance": "0.000657359576969745"
+    },
+    "0xb93f5afcfcc99fa2449d4d25017e0be1b20fe1e9": {
+      "balance_wei": "424490263662345416824281",
+      "balance": "424490.263662345416824281"
+    },
+    "0xce3a00c0b75e48fa11bc8dd20ae2d3077f72c0ea": {
+      "balance_wei": "9327301686093355",
+      "balance": "0.009327301686093355"
+    },
+    "0xf69d27c284eb80e833b2f67ae900a0432e9d73ab": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x727b5ba108c5f3ff76a17fc02cc92ca0ae2c8e01": {
+      "balance_wei": "22028431718061674008810",
+      "balance": "22028.43171806167400881"
+    },
+    "0x3f851a2e5e3f44f9ad28c07102055ab6ee0db9ef": {
+      "balance_wei": "24908431718061674008810",
+      "balance": "24908.43171806167400881"
+    },
+    "0xea304240332f1819f769f541feb612fe26cc276a": {
+      "balance_wei": "939081335549504064825355",
+      "balance": "939081.335549504064825355"
+    },
+    "0x80b9a0618c15f19a8e77730c13dd11ade6337634": {
+      "balance_wei": "8921526428596637",
+      "balance": "0.008921526428596637"
+    },
+    "0xa90c976a7f201da9c51b77200bf0b0d28e9bb807": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0xa32496ac2fa2fcb2a42e02d63e0bfe41517da331": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0xf1c4044b8d7e0240fca3617e3570b23eb18f8374": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x3e9ff88c9f7cb57e73811b7cebee32dffaa578ff": {
+      "balance_wei": "26192645215469729773",
+      "balance": "26.192645215469729773"
+    },
+    "0xe90be0b8d30ffe4c10aecb8dd4dd40bfbcace3a5": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x20d365e690da06b3c79502bcc50946e06b6e5fa9": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0xe45379a4d42f1b1bf9c6bf11eaf83583dd6136b6": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x41275d1c65de569c94d581036933c0b82f1acd04": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x6df619465ac0350bebc6632e128f9dc83fdda99e": {
+      "balance_wei": "9044858471645971",
+      "balance": "0.009044858471645971"
+    },
+    "0x3527fbfe95fa7179a69ad7167e255d90aabb18cc": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0xf09625d1fd052b169628c27f1ece525ccd0bd84e": {
+      "balance_wei": "22027431718061674008810",
+      "balance": "22027.43171806167400881"
+    },
+    "0x4017b0dff909b5643d28b4a4211776af1d8ed095": {
+      "balance_wei": "20000000000000000000000",
+      "balance": "20000"
+    },
+    "0x201a020dc58136954185f8133ea7cf6d24352aeb": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0xb0c3007eb7dcf57257842d34cd382142128a576c": {
+      "balance_wei": "22027431718061674008810",
+      "balance": "22027.43171806167400881"
+    },
+    "0xc3266122255c4421428bd45ac0092ed7c2ae268e": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x1d97b73a99d3554052b4716ff213f6040af5d476": {
+      "balance_wei": "13216431478982267358810",
+      "balance": "13216.43147898226735881"
+    },
+    "0x9109e18d3fc89a3ee5f26937844ad4b0d90a0cca": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x8d0585876d0f4a22f6619c19fd5ab9ca473cddcd": {
+      "balance_wei": "4453376611357762380710",
+      "balance": "4453.37661135776238071"
+    },
+    "0xd5923b968803681745bfba40dd08a4755875e15e": {
+      "balance_wei": "22026431718061674008810",
+      "balance": "22026.43171806167400881"
+    },
+    "0x9b0d1172f0e6d6e7bfd24a37d5938a4e70edca8a": {
+      "balance_wei": "999690905000000000",
+      "balance": "0.999690905"
+    },
+    "0xa87c2f7d8ed43767e618e51c482d90db5fcd90d9": {
+      "balance_wei": "5303754800000000000000",
+      "balance": "5303.7548"
+    },
+    "0x471f6719ef56f047d76d14361eef31c8a088c631": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x954182531d0d2f4b65f23867459da5124b2604d5": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0xc7aeedd4ea202372dc25a6d06f0e42c40942fbd2": {
+      "balance_wei": "415200000000000000000000",
+      "balance": "415200"
+    },
+    "0xd49126975c7a3fbc421a64baa76b52701bd0591b": {
+      "balance_wei": "999661025000000000",
+      "balance": "0.999661025"
+    },
+    "0x69a13f99da2cff5d45ccf693003c5a7bb75a85bb": {
+      "balance_wei": "22026431718061674008810",
+      "balance": "22026.43171806167400881"
+    },
+    "0xe3e3ed3f5c901b661e76e41bfdbe4156b0a7ccc0": {
+      "balance_wei": "0",
+      "balance": "0"
+    },
+    "0x1273e1aaffa6fce9430516cb42b34b61a11fc7c6": {
+      "balance_wei": "3998009094110826095",
+      "balance": "3.998009094110826095"
+    },
+    "0x09fd406031eed2aca9164a457f9e8186edb911b0": {
+      "balance_wei": "0",
+      "balance": "0"
+    }
+  }
+}

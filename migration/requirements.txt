@@ -1,0 +1,4 @@
+web3==5.31.1
+requests==2.31.0
+pydantic==1.10.8
+tqdm==4.66.1 

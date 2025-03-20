@@ -1,0 +1,109 @@
+2025-03-13 21:28:31,263 - INFO - Starting CXS holders fetch
+2025-03-13 21:28:31,263 - INFO - Rate limit: 100 requests per minute
+2025-03-13 21:28:31,263 - INFO - Batch size: 100 blocks
+2025-03-13 21:28:31,263 - INFO - Pause between batches: 5 seconds
+2025-03-13 21:28:31,263 - INFO - Using FAST SCAN mode for chains with mostly empty blocks
+2025-03-13 21:28:31,263 - INFO - Jump size: 5000 blocks
+2025-03-13 21:28:31,263 - INFO - Sample size: 10 blocks per region
+2025-03-13 21:28:31,651 - INFO - Connected to RPC endpoint: https://rpc.nxchainscan.com/
+2025-03-13 21:28:31,651 - INFO - Chain ID: 785
+2025-03-13 21:28:31,651 - INFO - Starting from block 1
+2025-03-13 21:28:31,741 - INFO - Latest block: 21960209
+2025-03-13 21:28:31,741 - INFO - Fast scanning from block 1 to 21960209
+2025-03-13 21:28:31,744 - INFO - Checking region from block 1 to 5000
+2025-03-13 21:28:32,724 - INFO - No transactions found in region 1-5000, skipping
+2025-03-13 21:28:32,724 - INFO - Checking region from block 5001 to 10000
+2025-03-13 21:28:33,720 - INFO - No transactions found in region 5001-10000, skipping
+2025-03-13 21:28:33,721 - INFO - Checking region from block 10001 to 15000
+2025-03-13 21:28:34,723 - INFO - No transactions found in region 10001-15000, skipping
+2025-03-13 21:28:34,724 - INFO - Checking region from block 15001 to 20000
+2025-03-13 21:28:35,724 - INFO - No transactions found in region 15001-20000, skipping
+2025-03-13 21:28:35,724 - INFO - Checking region from block 20001 to 25000
+2025-03-13 21:28:36,705 - INFO - No transactions found in region 20001-25000, skipping
+2025-03-13 21:28:36,705 - INFO - Checking region from block 25001 to 30000
+2025-03-13 21:28:37,696 - INFO - No transactions found in region 25001-30000, skipping
+2025-03-13 21:28:37,696 - INFO - Checking region from block 30001 to 35000
+2025-03-13 21:28:38,697 - INFO - No transactions found in region 30001-35000, skipping
+2025-03-13 21:28:38,697 - INFO - Checking region from block 35001 to 40000
+2025-03-13 21:28:39,691 - INFO - No transactions found in region 35001-40000, skipping
+2025-03-13 21:28:39,691 - INFO - Checking region from block 40001 to 45000
+2025-03-13 21:28:40,698 - INFO - No transactions found in region 40001-45000, skipping
+2025-03-13 21:28:40,698 - INFO - Checking region from block 45001 to 50000
+2025-03-13 21:28:41,599 - INFO - Rate limit reached. Sleeping for 50.05 seconds
+2025-03-13 21:29:31,803 - INFO - No transactions found in region 45001-50000, skipping
+2025-03-13 21:29:31,804 - INFO - Checking region from block 50001 to 55000
+2025-03-13 21:29:32,804 - INFO - No transactions found in region 50001-55000, skipping
+2025-03-13 21:29:32,804 - INFO - Checking region from block 55001 to 60000
+2025-03-13 21:29:33,792 - INFO - No transactions found in region 55001-60000, skipping
+2025-03-13 21:29:33,792 - INFO - Checking region from block 60001 to 65000
+2025-03-13 21:29:34,787 - INFO - No transactions found in region 60001-65000, skipping
+2025-03-13 21:29:34,787 - INFO - Checking region from block 65001 to 70000
+2025-03-13 21:29:35,786 - INFO - No transactions found in region 65001-70000, skipping
+2025-03-13 21:29:35,786 - INFO - Checking region from block 70001 to 75000
+2025-03-13 21:29:36,784 - INFO - No transactions found in region 70001-75000, skipping
+2025-03-13 21:29:36,785 - INFO - Checking region from block 75001 to 80000
+2025-03-13 21:29:37,772 - INFO - No transactions found in region 75001-80000, skipping
+2025-03-13 21:29:37,772 - INFO - Checking region from block 80001 to 85000
+2025-03-13 21:29:38,758 - INFO - No transactions found in region 80001-85000, skipping
+2025-03-13 21:29:38,759 - INFO - Checking region from block 85001 to 90000
+2025-03-13 21:29:39,742 - INFO - No transactions found in region 85001-90000, skipping
+2025-03-13 21:29:39,743 - INFO - Checking region from block 90001 to 95000
+2025-03-13 21:29:40,724 - INFO - No transactions found in region 90001-95000, skipping
+2025-03-13 21:29:40,725 - INFO - Checking region from block 95001 to 100000
+2025-03-13 21:29:41,613 - INFO - Rate limit reached. Sleeping for 50.09 seconds
+2025-03-13 21:30:31,850 - INFO - No transactions found in region 95001-100000, skipping
+2025-03-13 21:30:31,850 - INFO - Checking region from block 100001 to 105000
+2025-03-13 21:30:32,847 - INFO - No transactions found in region 100001-105000, skipping
+2025-03-13 21:30:32,847 - INFO - Checking region from block 105001 to 110000
+2025-03-13 21:30:33,856 - INFO - No transactions found in region 105001-110000, skipping
+2025-03-13 21:30:33,856 - INFO - Checking region from block 110001 to 115000
+2025-03-13 21:30:34,880 - INFO - No transactions found in region 110001-115000, skipping
+2025-03-13 21:30:34,880 - INFO - Checking region from block 115001 to 120000
+2025-03-13 21:30:35,879 - INFO - No transactions found in region 115001-120000, skipping
+2025-03-13 21:30:35,879 - INFO - Checking region from block 120001 to 125000
+2025-03-13 21:30:36,873 - INFO - No transactions found in region 120001-125000, skipping
+2025-03-13 21:30:36,873 - INFO - Checking region from block 125001 to 130000
+2025-03-13 21:30:37,863 - INFO - No transactions found in region 125001-130000, skipping
+2025-03-13 21:30:37,864 - INFO - Checking region from block 130001 to 135000
+2025-03-13 21:30:38,872 - INFO - No transactions found in region 130001-135000, skipping
+2025-03-13 21:30:38,872 - INFO - Checking region from block 135001 to 140000
+2025-03-13 21:30:39,865 - INFO - No transactions found in region 135001-140000, skipping
+2025-03-13 21:30:39,865 - INFO - Checking region from block 140001 to 145000
+2025-03-13 21:30:40,871 - INFO - No transactions found in region 140001-145000, skipping
+2025-03-13 21:30:40,872 - INFO - Checking region from block 145001 to 150000
+2025-03-13 21:30:41,766 - INFO - Rate limit reached. Sleeping for 49.99 seconds
+2025-03-13 21:31:31,898 - INFO - No transactions found in region 145001-150000, skipping
+2025-03-13 21:31:31,898 - INFO - Checking region from block 150001 to 155000
+2025-03-13 21:31:32,895 - INFO - No transactions found in region 150001-155000, skipping
+2025-03-13 21:31:32,895 - INFO - Checking region from block 155001 to 160000
+2025-03-13 21:31:33,880 - INFO - No transactions found in region 155001-160000, skipping
+2025-03-13 21:31:33,880 - INFO - Checking region from block 160001 to 165000
+2025-03-13 21:31:34,772 - INFO - Rate limit reached. Sleeping for 0.00 seconds
+2025-03-13 21:31:34,871 - INFO - No transactions found in region 160001-165000, skipping
+2025-03-13 21:31:34,871 - INFO - Checking region from block 165001 to 170000
+2025-03-13 21:31:34,871 - INFO - Rate limit reached. Sleeping for 0.01 seconds
+2025-03-13 21:31:35,892 - INFO - No transactions found in region 165001-170000, skipping
+2025-03-13 21:31:35,892 - INFO - Checking region from block 170001 to 175000
+2025-03-13 21:31:36,887 - INFO - No transactions found in region 170001-175000, skipping
+2025-03-13 21:31:36,887 - INFO - Checking region from block 175001 to 180000
+2025-03-13 21:31:37,887 - INFO - No transactions found in region 175001-180000, skipping
+2025-03-13 21:31:37,887 - INFO - Checking region from block 180001 to 185000
+2025-03-13 21:31:38,887 - INFO - No transactions found in region 180001-185000, skipping
+2025-03-13 21:31:38,887 - INFO - Checking region from block 185001 to 190000
+2025-03-13 21:31:39,872 - INFO - No transactions found in region 185001-190000, skipping
+2025-03-13 21:31:39,872 - INFO - Checking region from block 190001 to 195000
+2025-03-13 21:31:39,966 - INFO - Rate limit reached. Sleeping for 0.01 seconds
+2025-03-13 21:31:40,080 - INFO - Rate limit reached. Sleeping for 0.01 seconds
+2025-03-13 21:31:40,187 - INFO - Rate limit reached. Sleeping for 0.00 seconds
+2025-03-13 21:31:40,892 - INFO - No transactions found in region 190001-195000, skipping
+2025-03-13 21:31:40,892 - INFO - Checking region from block 195001 to 200000
+2025-03-13 21:31:41,771 - INFO - Rate limit reached. Sleeping for 50.03 seconds
+2025-03-13 21:32:04,461 - INFO - Shutdown requested. Saving current progress...
+2025-03-13 21:32:31,927 - INFO - No transactions found in region 195001-200000, skipping
+2025-03-13 21:32:31,928 - INFO - Fast scan completed. Processed 400 blocks directly.
+2025-03-13 21:32:31,928 - INFO - Found 0 regions with transactions out of 4393 regions.
+2025-03-13 21:32:31,928 - INFO - Found 0 transactions in total.
+2025-03-13 21:32:31,928 - INFO - Shutdown requested during fast scan. Last processed block: 200000
+2025-03-13 21:32:31,928 - INFO - Saved 0 accounts to holders_fast.json
+2025-03-13 21:32:31,928 - INFO - Found 0 accounts with non-zero CXS balance
+2025-03-13 21:32:31,928 - INFO - CXS holders fetch completed successfully

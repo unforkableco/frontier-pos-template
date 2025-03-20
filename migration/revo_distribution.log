@@ -1,0 +1,7 @@
+2025-03-14 11:19:37,721 - INFO - Loading combined wallet data from combined_wallets.json
+2025-03-14 11:19:37,723 - INFO - Successfully loaded data for 2891 wallets
+2025-03-14 11:19:37,726 - INFO - Calculated REVO distribution for 2891 wallets
+2025-03-14 11:19:37,727 - INFO - Total USD value: $201618.7012324571985994271818
+2025-03-14 11:19:37,727 - INFO - Total REVO tokens: 2016187.012324571985994271818
+2025-03-14 11:19:37,736 - INFO - Saved REVO distribution data to revo_distribution.json
+2025-03-14 11:19:37,736 - INFO - REVO distribution calculation completed successfully

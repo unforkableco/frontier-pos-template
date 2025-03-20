@@ -1,0 +1,2 @@
+2025-03-14 11:18:06,752 - INFO - Fetching prices from https://2prhxgnjz3tt2lqu4c45rnikbu0jjega.lambda-url.us-east-1.on.aws/
+2025-03-14 11:18:09,462 - INFO - Successfully fetched prices: {'nextep_price_usd': '0.0000014731045870310598', 'cxs_price_usd': '0.00014'}

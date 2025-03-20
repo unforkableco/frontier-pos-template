@@ -1,0 +1,24 @@
+2025-03-13 22:44:25,588 - INFO - Starting NEXTEP holders fetch with RPC balances
+2025-03-13 22:44:25,588 - INFO - Rate limit: 30 requests per minute
+2025-03-13 22:44:25,588 - INFO - Items per page: 3000
+2025-03-13 22:44:25,588 - INFO - RPC URL: https://rpc.nxchainscan.com/
+2025-03-13 22:44:25,589 - INFO - Fetching NEXTEP holders (page 1)...
+2025-03-13 22:44:26,036 - INFO - Fetched 2445 holders (total: 2445)
+2025-03-13 22:44:26,036 - INFO - Fetched 2445 holders from page 1
+2025-03-13 22:44:26,036 - INFO - Last page reached (1)
+2025-03-13 22:44:26,036 - INFO - Fetched a total of 2445 holders out of 2445
+2025-03-13 22:44:26,037 - INFO - Extracted 2412 unique addresses
+2025-03-13 22:44:26,414 - INFO - Connected to RPC. Chain ID: 785
+2025-03-13 22:44:26,422 - INFO - Fetching balances for 2412 addresses from RPC...
+2025-03-13 22:46:38,849 - INFO - Shutdown requested. Completing current batch and saving progress...
+2025-03-13 22:46:40,737 - INFO - Found 68 addresses with non-zero balances
+2025-03-13 22:46:40,738 - INFO - Saved 68 holder addresses to nextep_holders_rpc.json
+2025-03-13 22:46:40,738 - INFO - NEXTEP holders statistics:
+2025-03-13 22:46:40,738 - INFO - Total addresses with balance: 68
+2025-03-13 22:46:40,738 - INFO - Top 5 NEXTEP holders:
+2025-03-13 22:46:40,738 - INFO - 0x18b6d79c98b01b2b00ead42066b074cdc45ea343: 7205638018.325328 NEXTEP
+2025-03-13 22:46:40,738 - INFO - 0xbf49abcb2e534ad16e60ea9071104dfda8b3e0f4: 6302035403.964286 NEXTEP
+2025-03-13 22:46:40,738 - INFO - 0x2cbf7d7dc3c40e2d564590398a80563566c3ed13: 4297856207.270482 NEXTEP
+2025-03-13 22:46:40,738 - INFO - 0xf7e355890f37f59138d11cd4088ca46b753a51a4: 3001000000.000036 NEXTEP
+2025-03-13 22:46:40,738 - INFO - 0xbd05f83e511caa909f152d8b6be31dd644fe8cd2: 3000384278.558191 NEXTEP
+2025-03-13 22:46:40,738 - INFO - NEXTEP holders fetch with RPC balances completed successfully

@@ -1,0 +1,119 @@
+2025-03-13 22:20:26,685 - INFO - Starting direct balances fetch
+2025-03-13 22:20:26,685 - INFO - Rate limit: 30 requests per minute
+2025-03-13 22:20:26,685 - INFO - Items per page: 3000
+2025-03-13 22:20:26,685 - INFO - RPC URL: https://rpc.nxchainscan.com/
+2025-03-13 22:20:26,686 - ERROR - Error: type object 'Web3' has no attribute 'to_checksum_address'
+2025-03-13 22:21:50,398 - INFO - Starting direct balances fetch
+2025-03-13 22:21:50,398 - INFO - Rate limit: 30 requests per minute
+2025-03-13 22:21:50,398 - INFO - Items per page: 3000
+2025-03-13 22:21:50,398 - INFO - RPC URL: https://rpc.nxchainscan.com/
+2025-03-13 22:21:50,825 - INFO - Connected to RPC. Chain ID: 785
+2025-03-13 22:21:50,825 - INFO - Fetching all transactions...
+2025-03-13 22:21:50,825 - INFO - Fetching page 1 of transactions...
+2025-03-13 22:21:51,144 - ERROR - Error fetching transactions: HTTPSConnectionPool(host='ethernal.nextep.cloud', port=443): Max retries exceeded with url: /api/transactions?firebaseUserId=vD7HEE68iAYPnwJ5aUs4ePRm2tN2&workspace=Nxchain&page=1&itemsPerPage=3000&orderBy=blockNumber&order=desc&withCount=false (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f85928575b0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+2025-03-13 22:21:51,144 - INFO - No more transactions found after page 0
+2025-03-13 22:21:51,144 - INFO - Fetched a total of 0 transactions
+2025-03-13 22:21:51,144 - ERROR - No transactions found
+2025-03-13 22:24:19,348 - INFO - Starting direct balances fetch
+2025-03-13 22:24:19,348 - INFO - Rate limit: 30 requests per minute
+2025-03-13 22:24:19,348 - INFO - Items per page: 3000
+2025-03-13 22:24:19,348 - INFO - RPC URL: https://rpc.nxchainscan.com/
+2025-03-13 22:24:19,750 - INFO - Connected to RPC. Chain ID: 785
+2025-03-13 22:24:19,750 - INFO - Fetching all transactions...
+2025-03-13 22:24:19,750 - INFO - Fetching page 1 of transactions...
+2025-03-13 22:24:20,947 - INFO - Fetched 3000 transactions from page 1
+2025-03-13 22:24:20,947 - INFO - Fetching page 2 of transactions...
+2025-03-13 22:24:22,340 - INFO - Fetched 608 transactions from page 2
+2025-03-13 22:24:22,340 - INFO - Last page reached (2)
+2025-03-13 22:24:22,340 - INFO - Fetched a total of 3608 transactions
+2025-03-13 22:24:22,340 - INFO - Extracting unique addresses from transactions...
+2025-03-13 22:24:22,348 - INFO - Found 601 unique addresses
+2025-03-13 22:24:22,349 - INFO - Fetching balances for 601 addresses...
+2025-03-13 22:24:26,044 - ERROR - Contract error getting NEXTEP balance for 0xc5c7920b1bad0e2c22fb7df60fd51195b56541be: {'code': -32600, 'message': 'unable to fetch code'}
+2025-03-13 22:24:30,037 - ERROR - Contract error getting NEXTEP balance for 0x6c3a6caf04237751398ef36af177597c19ca5ceb: {'code': -32600, 'message': 'unable to fetch code'}
+2025-03-13 22:24:34,037 - ERROR - Contract error getting NEXTEP balance for 0x6e56685031a06d5aeff0b64c8ba3c9e663750bda: {'code': -32600, 'message': 'unable to fetch code'}
+2025-03-13 22:24:38,042 - ERROR - Contract error getting NEXTEP balance for 0xfcb0b9cc7f62ae7c4e97e2d9c8c48e2b97aa15fe: {'code': -32600, 'message': 'unable to fetch code'}
+2025-03-13 22:24:42,046 - ERROR - Contract error getting NEXTEP balance for 0x075accec2957cac9fb4bca3c90ba123554ad6315: {'code': -32600, 'message': 'unable to fetch code'}
+2025-03-13 22:24:45,104 - INFO - Shutdown requested. Completing current batch and saving progress...
+2025-03-13 22:24:46,054 - ERROR - Contract error getting NEXTEP balance for 0x350ed6f52437514e84e244c4130d79e46ffc3062: {'code': -32600, 'message': 'unable to fetch code'}
+2025-03-13 22:24:46,055 - INFO - Found 5 addresses with non-zero balances
+2025-03-13 22:24:46,055 - INFO - Saved 5 balances to direct_balances.json
+2025-03-13 22:24:46,055 - INFO - CXS holders: 5
+2025-03-13 22:24:46,055 - INFO - NEXTEP holders: 0
+2025-03-13 22:24:46,055 - INFO - Addresses holding both: 0
+2025-03-13 22:24:46,055 - INFO - Top 5 CXS holders:
+2025-03-13 22:24:46,056 - INFO - 0x350ed6f52437514e84e244c4130d79e46ffc3062: 13125.503169869962 CXS
+2025-03-13 22:24:46,056 - INFO - 0xc5c7920b1bad0e2c22fb7df60fd51195b56541be: 49.99925082674886 CXS
+2025-03-13 22:24:46,056 - INFO - 0xfcb0b9cc7f62ae7c4e97e2d9c8c48e2b97aa15fe: 9.998231214651454 CXS
+2025-03-13 22:24:46,056 - INFO - 0x6c3a6caf04237751398ef36af177597c19ca5ceb: 8.0 CXS
+2025-03-13 22:24:46,056 - INFO - 0x6e56685031a06d5aeff0b64c8ba3c9e663750bda: 0.00933749816075866 CXS
+2025-03-13 22:24:46,056 - INFO - Top 5 NEXTEP holders:
+2025-03-13 22:24:46,056 - INFO - 0xc5c7920b1bad0e2c22fb7df60fd51195b56541be: 0.0 NEXTEP
+2025-03-13 22:24:46,056 - INFO - 0x6c3a6caf04237751398ef36af177597c19ca5ceb: 0.0 NEXTEP
+2025-03-13 22:24:46,056 - INFO - 0x6e56685031a06d5aeff0b64c8ba3c9e663750bda: 0.0 NEXTEP
+2025-03-13 22:24:46,056 - INFO - 0xfcb0b9cc7f62ae7c4e97e2d9c8c48e2b97aa15fe: 0.0 NEXTEP
+2025-03-13 22:24:46,056 - INFO - 0x350ed6f52437514e84e244c4130d79e46ffc3062: 0.0 NEXTEP
+2025-03-13 22:24:46,056 - INFO - Direct balances fetch completed successfully
+2025-03-13 22:26:35,542 - INFO - Starting direct balances fetch
+2025-03-13 22:26:35,542 - INFO - Rate limit: 30 requests per minute
+2025-03-13 22:26:35,542 - INFO - Items per page: 3000
+2025-03-13 22:26:35,543 - INFO - RPC URL: https://rpc.nxchainscan.com/
+2025-03-13 22:26:35,929 - INFO - Connected to RPC. Chain ID: 785
+2025-03-13 22:26:35,929 - INFO - Fetching all transactions...
+2025-03-13 22:26:35,929 - INFO - Fetching page 1 of transactions...
+2025-03-13 22:26:37,278 - INFO - Fetched 3000 transactions from page 1
+2025-03-13 22:26:37,278 - INFO - Fetching page 2 of transactions...
+2025-03-13 22:26:38,396 - INFO - Fetched 608 transactions from page 2
+2025-03-13 22:26:38,397 - INFO - Last page reached (2)
+2025-03-13 22:26:38,397 - INFO - Fetched a total of 3608 transactions
+2025-03-13 22:26:38,397 - INFO - Extracting unique addresses from transactions...
+2025-03-13 22:26:38,404 - INFO - Found 601 unique addresses
+2025-03-13 22:26:38,404 - INFO - Fetching balances for 601 addresses...
+2025-03-13 22:27:47,277 - INFO - Shutdown requested. Completing current batch and saving progress...
+2025-03-13 22:27:50,088 - INFO - Shutdown requested. Completing current batch and saving progress...
+2025-03-13 22:27:50,184 - INFO - Found 12 addresses with non-zero balances
+2025-03-13 22:27:50,185 - INFO - Saved 12 balances to direct_balances.json
+2025-03-13 22:27:50,185 - INFO - CXS holders: 12
+2025-03-13 22:27:50,185 - INFO - NEXTEP holders: 8
+2025-03-13 22:27:50,185 - INFO - Addresses holding both: 8
+2025-03-13 22:27:50,185 - INFO - Top 5 CXS holders:
+2025-03-13 22:27:50,185 - INFO - 0x8f98a4754c12a6e1a25ce2d7217f58119daa98fe: 4079979.320904897 CXS
+2025-03-13 22:27:50,185 - INFO - 0x856c322cd11a0a96f4f3f15231a595e03952bb07: 2168570.0 CXS
+2025-03-13 22:27:50,185 - INFO - 0xcf7bc319c0a970e516231a15a7274a22ddedec03: 2099000.962648279 CXS
+2025-03-13 22:27:50,185 - INFO - 0xe12fd08ddb36f0961659db00ed3b9e089283ab3a: 1857.349866303633 CXS
+2025-03-13 22:27:50,185 - INFO - 0x23a9665a36536871c02942a9ff3b240e0e9030a1: 162.6933284953718 CXS
+2025-03-13 22:27:50,185 - INFO - Top 5 NEXTEP holders:
+2025-03-13 22:27:50,185 - INFO - 0xcf7bc319c0a970e516231a15a7274a22ddedec03: 782390996.2937096 NEXTEP
+2025-03-13 22:27:50,185 - INFO - 0x932954716730e882a9aac0d9f1b001e20ed1c95d: 235472063.0768893 NEXTEP
+2025-03-13 22:27:50,186 - INFO - 0x8f98a4754c12a6e1a25ce2d7217f58119daa98fe: 235396958.46450043 NEXTEP
+2025-03-13 22:27:50,186 - INFO - 0xe12fd08ddb36f0961659db00ed3b9e089283ab3a: 8985877.558190601 NEXTEP
+2025-03-13 22:27:50,186 - INFO - 0x791be632291a0b8d0fbc772347c4a7bc2d81b08f: 7730165.376090357 NEXTEP
+2025-03-13 22:27:50,186 - INFO - Direct balances fetch completed successfully
+2025-03-13 22:29:10,787 - INFO - Starting direct balances fetch
+2025-03-13 22:29:10,787 - INFO - Rate limit: 30 requests per minute
+2025-03-13 22:29:10,787 - INFO - Items per page: 3000
+2025-03-13 22:29:10,787 - INFO - RPC URL: https://rpc.nxchainscan.com/
+2025-03-13 22:29:11,176 - INFO - Connected to RPC. Chain ID: 785
+2025-03-13 22:29:11,177 - INFO - Fetching all transactions...
+2025-03-13 22:29:11,177 - INFO - Fetching page 1 of transactions...
+2025-03-13 22:29:12,956 - INFO - Fetched 3000 transactions from page 1
+2025-03-13 22:29:12,956 - INFO - Fetching page 2 of transactions...
+2025-03-13 22:29:13,655 - INFO - Fetched 608 transactions from page 2
+2025-03-13 22:29:13,655 - INFO - Last page reached (2)
+2025-03-13 22:29:13,655 - INFO - Fetched a total of 3608 transactions
+2025-03-13 22:29:13,655 - INFO - Extracting unique addresses from transactions...
+2025-03-13 22:29:13,662 - INFO - Found 608 unique addresses
+2025-03-13 22:29:13,663 - INFO - Fetching balances for 608 addresses...
+2025-03-13 22:29:25,722 - INFO - Shutdown requested. Completing current batch and saving progress...
+2025-03-13 22:29:29,377 - INFO - Found 2 addresses with non-zero balances
+2025-03-13 22:29:29,377 - INFO - Saved 2 balances to direct_balances.json
+2025-03-13 22:29:29,377 - INFO - CXS holders: 2
+2025-03-13 22:29:29,377 - INFO - NEXTEP holders: 2
+2025-03-13 22:29:29,377 - INFO - Addresses holding both: 2
+2025-03-13 22:29:29,378 - INFO - Top 5 CXS holders:
+2025-03-13 22:29:29,378 - INFO - 0x263297a0f10e6d690aaf2753c1ed0aeee372e6c2: 30863.0 CXS
+2025-03-13 22:29:29,378 - INFO - 0x7d01d130fc99a60e721c48e1f0d60a46be0b181f: 29.99989481934599 CXS
+2025-03-13 22:29:29,378 - INFO - Top 5 NEXTEP holders:
+2025-03-13 22:29:29,378 - INFO - 0x7d01d130fc99a60e721c48e1f0d60a46be0b181f: 63763140.89556296 NEXTEP
+2025-03-13 22:29:29,378 - INFO - 0x263297a0f10e6d690aaf2753c1ed0aeee372e6c2: 8363748.179702996 NEXTEP
+2025-03-13 22:29:29,378 - INFO - Direct balances fetch completed successfully

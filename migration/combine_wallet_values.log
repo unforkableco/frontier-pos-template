@@ -1,0 +1,25 @@
+2025-03-14 11:13:47,966 - INFO - Loading wallet data from active_wallets_with_balances.json
+2025-03-14 11:13:47,967 - INFO - Successfully loaded data for 783 wallets
+2025-03-14 11:13:47,967 - INFO - Loading wallet data from active_wallets_with_balances_nextep.json
+2025-03-14 11:13:47,969 - INFO - Successfully loaded data for 2532 wallets
+2025-03-14 11:13:47,969 - INFO - Total CXS from active_wallets_with_balances.json: 763397342.308653726451438391
+2025-03-14 11:13:47,970 - INFO - Total NEXTEP from active_wallets_with_balances_nextep.json: 64315439080.33784325315717788
+2025-03-14 11:13:47,970 - INFO - Fetching current price for CXS
+2025-03-14 11:13:48,066 - ERROR - Error running fetch_cxs_price.py: usage: fetch_cxs_price.py [-h] [--output OUTPUT] [--save]
+fetch_cxs_price.py: error: unrecognized arguments: --token CXS
+
+2025-03-14 11:13:48,066 - INFO - Fetching current price for NEXTEP
+2025-03-14 11:13:48,134 - ERROR - Error running fetch_cxs_price.py: usage: fetch_cxs_price.py [-h] [--output OUTPUT] [--save]
+fetch_cxs_price.py: error: unrecognized arguments: --token NEXTEP
+
+2025-03-14 11:13:48,134 - WARNING - One or both token prices could not be fetched. USD values may be inaccurate.
+2025-03-14 11:13:48,145 - INFO - Saved combined wallet data to combined_wallets.json
+2025-03-14 11:13:48,146 - INFO - Combined wallet values successfully
+2025-03-14 11:18:50,571 - INFO - Loading wallet data from active_wallets_with_balances.json
+2025-03-14 11:18:50,572 - INFO - Successfully loaded data for 783 wallets
+2025-03-14 11:18:50,572 - INFO - Loading wallet data from active_wallets_with_balances_nextep.json
+2025-03-14 11:18:50,574 - INFO - Successfully loaded data for 2532 wallets
+2025-03-14 11:18:50,574 - INFO - Total CXS from active_wallets_with_balances.json: 763397342.308653726451438391
+2025-03-14 11:18:50,574 - INFO - Total NEXTEP from active_wallets_with_balances_nextep.json: 64315439080.33784325315717788
+2025-03-14 11:18:50,586 - INFO - Saved combined wallet data to combined_wallets.json
+2025-03-14 11:18:50,586 - INFO - Combined wallet values successfully

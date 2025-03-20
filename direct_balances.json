@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "timestamp": "2025-03-13 22:29:29",
+    "total_addresses": 2,
+    "cxs_holders": 2,
+    "nextep_holders": 2
+  },
+  "balances": {
+    "0x7d01d130fc99a60e721c48e1f0d60a46be0b181f": {
+      "cxs": "29.999894819345988",
+      "cxs_float": 29.99989481934599,
+      "nextep": "63763140.895562958724472252",
+      "nextep_float": 63763140.89556296
+    },
+    "0x263297a0f10e6d690aaf2753c1ed0aeee372e6c2": {
+      "cxs": "30863",
+      "cxs_float": 30863.0,
+      "nextep": "8363748.179702996031677634",
+      "nextep_float": 8363748.179702996
+    }
+  }
+}
