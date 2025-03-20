@@ -21,7 +21,7 @@ services:
   alice:
     image: chainsupport/substrate-testnet-node:latest
     user: root
-    command: ["--pruning", "archive", "--alice", "--rpc-max-connections", "100", "--rpc-cors", "all", "--rpc-methods", "Unsafe", "--unsafe-rpc-external"]
+    command: ["--pruning", "1000", "--alice", "--rpc-max-connections", "100", "--rpc-cors", "all", "--rpc-methods", "Unsafe", "--unsafe-rpc-external"]
     volumes:
       - ./db/alice:/data 
     ports:
@@ -38,7 +38,7 @@ services:
   bob:
     image: chainsupport/substrate-testnet-node:latest
     user: root
-    command: ["--pruning", "archive", "--bob", "--rpc-max-connections", "100", "--rpc-cors", "all", "--rpc-methods", "Unsafe", "--unsafe-rpc-external"]
+    command: ["--pruning", "1000", "--bob", "--rpc-max-connections", "100", "--rpc-cors", "all", "--rpc-methods", "Unsafe", "--unsafe-rpc-external"]
     volumes:
       - ./db/bob:/data 
     ports:
@@ -51,6 +51,24 @@ services:
     networks:
       - substrate
 
+  # Disk space monitoring service
+  disk-monitor:
+    image: alpine:latest
+    restart: always
+    volumes:
+      - /:/host:ro
+    command: >
+      sh -c '
+      while true; do
+        USAGE=$(df -h /host | tail -1 | awk "{print \$$5}" | tr -d "%");
+        if [ "$USAGE" -gt 85 ]; then
+          echo "WARNING: Disk usage is at ${USAGE}%. Consider pruning or extending disk space.";
+        fi;
+        sleep 3600;
+      done
+      '
+    networks:
+      - substrate
 
 networks:
   substrate:
