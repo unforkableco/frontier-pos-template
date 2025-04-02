@@ -30,7 +30,6 @@ services:
       - 9933:9933
     depends_on:
       - init_alice
-
     networks:
       - substrate
       
@@ -43,30 +42,10 @@ services:
       - ./db/bob:/data 
     ports:
       - 30334:30333
-      - 8545:9944 # 
+      - 8545:9944
       - 9934:9933
-
     depends_on:
       - init_bob
-    networks:
-      - substrate
-
-  # Disk space monitoring service
-  disk-monitor:
-    image: alpine:latest
-    restart: always
-    volumes:
-      - /:/host:ro
-    command: >
-      sh -c '
-      while true; do
-        USAGE=$(df -h /host | tail -1 | awk "{print \$$5}" | tr -d "%");
-        if [ "$USAGE" -gt 85 ]; then
-          echo "WARNING: Disk usage is at ${USAGE}%. Consider pruning or extending disk space.";
-        fi;
-        sleep 3600;
-      done
-      '
     networks:
       - substrate
 
