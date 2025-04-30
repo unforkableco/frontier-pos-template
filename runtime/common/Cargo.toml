@@ -9,7 +9,7 @@ homepage.workspace = true
 
 [dependencies]
 node-primitives = { path = "../../node/primitives", default-features = false }
-polkadot-sdk = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0", features = ["runtime", "tuples-96"], default-features = false }
+polkadot-sdk = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20", features = ["runtime", "tuples-96"], default-features = false }
 
 
 [lints]

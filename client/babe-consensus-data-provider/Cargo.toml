@@ -10,25 +10,25 @@ homepage.workspace = true
 [dependencies]
 # Substrate
 #parity-scale-codec = { workspace = true, features = ["derive", "std"] }
-sp-api = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0", features = ["std"] }
-sp-application-crypto = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0" }
-sp-core = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0", features = ["std"] }
-sp-keystore = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0" }
-sp-runtime = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0" }
-sp-consensus-babe = { features = ["serde"], git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0" }
+sp-api = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20", features = ["std"] }
+sp-application-crypto = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20" }
+sp-core = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20", features = ["std"] }
+sp-keystore = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20" }
+sp-runtime = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20" }
+sp-consensus-babe = { features = ["serde"], git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20" }
 scale-info = { workspace = true}
-sc-service = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0" }
-sc-client-api = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0" }
-sc-consensus-babe = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0" }
-sp-inherents = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0", features = ["default"] }
-sp-timestamp = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0" }
+sc-service = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20" }
+sc-client-api = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20" }
+sc-consensus-babe = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20" }
+sp-inherents = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20", features = ["default"] }
+sp-timestamp = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20" }
 sp-keyring = { workspace = true}
 # Other
 schnorrkel = { version = "0.11.4", default-features = false, features = [
     "preaudit_deprecated",
 ] }
 
-fc-rpc = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", features = [
+fc-rpc = { git="https://github.com/notfork-h/frontier.git", branch="master", features = [
     "rpc-binary-search-estimate",
     "txpool",
 ] }

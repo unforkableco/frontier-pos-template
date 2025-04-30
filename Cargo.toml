@@ -1,9 +1,19 @@
 [workspace.package]
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Unforkable"]
 edition = "2021"
 repository = "https://github.com/paritytech/polkadot-sdk.git"
 license = "GPL-3.0-only"
 homepage = "https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/index.html"
+
+[patch."https://github.com/w3f/fflonk"]
+fflonk = { git = "https://github.com/notfork-h/fflonk", branch = "main" }
+
+[patch."https://github.com/w3f/ring-proof"]
+fflonk = { git = "https://github.com/notfork-h/fflonk", branch = "main" }
+
+[patch."https://github.com/w3f/ring-vrf"]
+fflonk = { git = "https://github.com/notfork-h/fflonk", branch = "main" }
+
 
 [workspace]
 resolver = "2"
@@ -16,6 +26,11 @@ members = [
     "node/rpc", "runtime/common",
     "runtime/mainnet",
 ]
+
+
+[patch.crates-io]
+polkadot-sdk = { git = "https://github.com/unforkableorg/polkadot-sdk", branch = "staking-erc20" }
+substrate-wasm-builder = { git = "https://github.com/unforkableorg/polkadot-sdk", branch = "staking-erc20", package = "substrate-wasm-builder" }
 
 #default-members = [
 #]
@@ -54,33 +69,33 @@ serde_json = { version = "1.0.114", default-features = false }
 thiserror = { version = "1.0.48" }
 
 # Frontier Client
-fc-api = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0" }
-fc-cli = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-fc-consensus = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-fc-db = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-fc-mapping-sync = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-fc-rpc = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-fc-rpc-core = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0" }
-fc-storage = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0" }
+fc-api = { git="https://github.com/notfork-h/frontier.git", branch="master" }
+fc-cli = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+fc-consensus = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+fc-db = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+fc-mapping-sync = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+fc-rpc = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+fc-rpc-core = { git="https://github.com/notfork-h/frontier.git", branch="master" }
+fc-storage = { git="https://github.com/notfork-h/frontier.git", branch="master" }
 # Frontier Primitive
-fp-account = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-fp-dynamic-fee = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-fp-evm = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-fp-rpc = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-fp-self-contained = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
+fp-account = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+fp-dynamic-fee = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+fp-evm = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+fp-rpc = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+fp-self-contained = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
 # Frontier FRAME
-pallet-base-fee = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-pallet-dynamic-fee = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-pallet-ethereum = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-pallet-evm = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-pallet-evm-chain-id = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-pallet-evm-precompile-modexp = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-pallet-evm-precompile-sha3fips = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
-pallet-evm-precompile-simple = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }
+pallet-base-fee = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+pallet-dynamic-fee = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+pallet-ethereum = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+pallet-evm = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+pallet-evm-chain-id = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+pallet-evm-precompile-modexp = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+pallet-evm-precompile-sha3fips = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
+pallet-evm-precompile-simple = { git="https://github.com/notfork-h/frontier.git", branch="master", default-features = false }
 
-sp-core = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0", default-features = false }
-sp-runtime = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0", default-features = false }
-sp-keyring = { git="https://github.com/paritytech/polkadot-sdk", branch="release-polkadot-v1.13.0", default-features = false }
+sp-core = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20", default-features = false }
+sp-runtime = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20", default-features = false }
+sp-keyring = { git="https://github.com/unforkableorg/polkadot-sdk", branch="staking-erc20", default-features = false }
 
 # local 
 ecdsa-keyring = { path = "./client/ecdsa-keyring"}
