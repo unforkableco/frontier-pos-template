@@ -8,10 +8,20 @@ When user asks for a modification of code, you must perform these tasks to creat
 4/ For every broad step, generate a detailed execution plan in the same .md file
 5/ The last step should always be Result validation, it should include if possible the creation of a script to validate the result, if not, the steps to perform by the user to validate the task. If a script can be written, you must write the code
 6/ You must begin the development itself only after the user validated the development plan you provided and then follow the developpment plan carefully
+7/ You can ask the user additional questions during the development process
+8/ Once the user validates that the development is succesfully terminated, you must create another .md file next to the development plan that contains the summary of completed steps and the end result in terms of fuctionality added, removed or modified.
 
 ## Building instructions
 
 The proper command to build an executable is "cargo build --release --features=testnet"
+
+## Running tests instructions
+
+The proper command to run the tests is "cargo test --features=testnet"
+
+## Specific cargo check instructions
+
+The proper command to run cargo check is "cargo check --features=testnet"
 
 ## Starting a node
 
