@@ -1,0 +1,1060 @@
+{
+  "name": ".",
+  "path": ".",
+  "type": "directory",
+  "children": [
+    {
+      "name": ".dockerignore",
+      "path": ".dockerignore",
+      "type": "file",
+      "summary": "Specifies files and directories Docker should ignore during builds, including the `target` build directory, `db*` files, and `.idea` IDE files."
+    },
+    {
+      "name": ".gitignore",
+      "path": ".gitignore",
+      "type": "file",
+      "summary": "Specifies intentionally untracked files that Git should ignore. Includes typical Rust/Cargo build artifacts (`target/`), IDE files (`.idea`, `.vscode`), environment files (`.env*`), OS files (`.DS_Store`), temporary files (`*.swp`, `*html`), node modules, local chains (`node1`, `node2`, `private`), and various build/cache directories."
+    },
+    {
+      "name": ".rustfmt.toml",
+      "path": ".rustfmt.toml",
+      "type": "file",
+      "summary": "Configuration file for `rustfmt`, the Rust code formatter. Specifies that import granularity should be at the crate level and unused imports should be preserved."
+    },
+    {
+      "name": "Cargo.toml",
+      "path": "Cargo.toml",
+      "type": "file",
+      "summary": "Defines the Cargo workspace for the project. Specifies workspace members (crates like `node/cli`, `runtime/mainnet`, etc.), common metadata (authors, license), workspace-wide dependencies (including numerous Frontier and Polkadot SDK crates from Git), and configuration profiles (release, production, testnet, dev). Also includes extensive clippy lint configurations."
+    },
+    {
+      "name": "README.md",
+      "path": "README.md",
+      "type": "file",
+      "summary": "Main project README. Describes the project as a public chain development template based on Polkadot SDK and Frontier, featuring NPOS consensus and EVM compatibility. Includes links to documentation for starting development, connecting via PolkadotJS explorer and MetaMask, deploying Blockscout, and using Solidity tools like Hardhat and Remix. Mentions the Apache 2.0 license."
+    },
+    {
+      "name": "docker-compose.yml",
+      "path": "docker-compose.yml",
+      "type": "file",
+      "summary": "Docker Compose configuration for running a two-node (Alice and Bob) testnet locally. Defines services for initializing node keys (`init_alice`, `init_bob`) and running the actual nodes (`alice`, `bob`) using the `chainsupport/substrate-testnet-node` image. Configures volumes for persistent data (`./db`), ports for P2P (3033x), RPC (9944, 8545), and WebSocket (993x), command-line flags for the nodes (e.g., pruning, RPC settings, validator keys), dependencies between services, and a bridge network (`substrate`)."
+    },
+    {
+      "name": "rust-toolchain.toml",
+      "path": "rust-toolchain.toml",
+      "type": "file",
+      "summary": "Specifies the exact Rust toolchain version (`1.80.0`) to use for this project. Also defines required components (`rust-src`, `clippy`) and target architectures (`wasm32-unknown-unknown`, `x86_64-unknown-linux-gnu`). Ensures consistent builds across environments."
+    },
+    {
+      "name": "client",
+      "path": "client",
+      "type": "directory",
+      "children": [
+        {
+          "name": "babe-consensus-data-provider",
+          "path": "client/babe-consensus-data-provider",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Cargo.toml",
+              "path": "client/babe-consensus-data-provider/Cargo.toml",
+              "type": "file",
+              "summary": "Cargo manifest for the `babe-consensus-data-provider` crate. Defines dependencies needed for interacting with the BABE consensus mechanism, primarily pulling from the Polkadot SDK (e.g., `sp-consensus-babe`, `sc-consensus-babe`, `sp-keystore`) and Frontier (`fc-rpc`). Inherits workspace package metadata and lints."
+            },
+            {
+              "name": "src",
+              "path": "client/babe-consensus-data-provider/src",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "lib.rs",
+                  "path": "client/babe-consensus-data-provider/src/lib.rs",
+                  "type": "file",
+                  "summary": "Provides a `ConsensusDataProvider` implementation for BABE consensus, used by the Frontier RPC to generate necessary digests for pending block creation. Implements `create_digest` which determines the correct type of pre-digest (Primary, Secondary Plain, Secondary VRF) based on the node's authority status, allowed slots, and VRF checks against the keystore. Includes helper functions for creating digests and VRF signatures. Based on `frame/babe/src/mock.rs`.",
+                  "uses": [
+                    "fc_rpc::pending::ConsensusDataProvider",
+                    "sc_client_api::backend::{AuxStore, Backend, StorageProvider}",
+                    "sc_client_api::UsageProvider",
+                    "sc_service::error::Error as ServiceError",
+                    "sc_service::{ChainSpec, Configuration, PartialComponents, TFullBackend, TFullClient, TaskManager}",
+                    "schnorrkel::PublicKey",
+                    "sp_api::{ApiExt, ApiRef, Core, ProvideRuntimeApi}",
+                    "sp_application_crypto::{AppCrypto, ByteArray}",
+                    "sp_consensus_babe::digests::PreDigest",
+                    "sp_consensus_babe::inherents::BabeInherentData",
+                    "sp_consensus_babe::{make_vrf_transcript, AllowedSlots, AuthorityId, AuthorityPair, BabeApi, BabeConfiguration, Epoch, Randomness, Slot, VrfSignature}",
+                    "sp_core::{Encode, H256}",
+                    "sp_inherents::{CreateInherentDataProviders, InherentData, InherentDataProvider}",
+                    "sp_keystore::{Keystore, KeystorePtr}",
+                    "sp_runtime::generic::{Digest, DigestItem}",
+                    "sp_runtime::traits::{Block as BlockT, Header as HeaderT, One}",
+                    "sp_runtime::TransactionOutcome",
+                    "std::marker::PhantomData",
+                    "std::sync::Arc",
+                    "sp_consensus_babe::SlotDuration"
+                  ]
+                }
+              ],
+              "summary": null
+            }
+          ],
+          "summary": null
+        },
+        {
+          "name": "ecdsa-keyring",
+          "path": "client/ecdsa-keyring",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Cargo.toml",
+              "path": "client/ecdsa-keyring/Cargo.toml",
+              "type": "file",
+              "summary": "Cargo manifest for the `ecdsa-keyring` crate. Defines dependencies related to ECDSA key generation and management, including libraries for BIP32/BIP39 (`bip32`, `tiny-bip39`), derivation paths (`derivation-path`), hex encoding (`hex`), and Polkadot/Substrate primitives (`sp-core`, `sp-runtime`, `fp-account`, `sp-keyring`). Includes a `std` feature flag."
+            },
+            {
+              "name": "src",
+              "path": "client/ecdsa-keyring/src",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "lib.rs",
+                  "path": "client/ecdsa-keyring/src/lib.rs",
+                  "type": "file",
+                  "summary": "Defines a `Keyring` enum (Alith, Baltathar, etc.) representing standard ECDSA development accounts derived from the `DEV_PHRASE` using BIP32/BIP44. Provides functions for converting between `Keyring`, `Public` key, `AccountId20` (address), and `Pair`. Allows signing messages and iterating through accounts. Useful for EVM testing and benchmarking. References `sp-keyring`.",
+                  "uses": [
+                    "bip32::XPrv",
+                    "bip39::{Language, Mnemonic, MnemonicType, Seed}",
+                    "derivation_path::DerivationPath",
+                    "fp_account::AccountId20",
+                    "sp_core::ecdsa::Signature",
+                    "sp_core::crypto::DEV_PHRASE",
+                    "sp_core::ecdsa::{Pair, Public}",
+                    "sp_core::{hex2array, ByteArray, Pair as PairT, H256}",
+                    "sp_core::{ecdsa, H160}",
+                    "sp_keyring::sr25519::ParseKeyringError",
+                    "strum::IntoEnumIterator",
+                    "alloc::{format, str::FromStr, string::String, vec::Vec}"
+                  ]
+                }
+              ],
+              "summary": null
+            }
+          ],
+          "summary": null
+        }
+      ],
+      "summary": null
+    },
+    {
+      "name": "docs",
+      "path": "docs",
+      "type": "directory",
+      "children": [
+        {
+          "name": "build-node-docker.md",
+          "path": "docs/build-node-docker.md",
+          "type": "file",
+          "summary": "Provides instructions for building the node Docker images using `docker buildx`. Includes commands for creating a builder instance, building multi-platform (amd64, arm64) images for both testnet (`substrate-testnet-node`) and mainnet (`substrate-mainnet-node`) using their respective Dockerfiles (`./docker/testnet-node.Dockerfile`, `./docker/mainnet-node.Dockerfile`). Includes example commands used by the author, potentially for pushing to a registry (`chainsupport`)."
+        },
+        {
+          "name": "build-node-local.md",
+          "path": "docs/build-node-local.md",
+          "type": "file",
+          "summary": "Instructions for building the node binary locally. Requires installing the Substrate development environment first (linking to official docs). Provides `cargo build --release` commands to build either the mainnet or testnet version by specifying the corresponding feature flag (`--features mainnet` or `--features testnet`)."
+        },
+        {
+          "name": "docker-aws-deployment.md",
+          "path": "docs/docker-aws-deployment.md",
+          "type": "file",
+          "summary": "Documents the process for deploying the Dockerized two-node testnet (Alice and Bob) to AWS using a GitHub Actions workflow. Covers prerequisites (AWS credentials as GitHub secrets), triggering the workflow, the automated steps performed (security group creation, EC2 instance launch, Docker/Docker Compose installation, repo cloning, service startup, auto-restart config), how to access the deployed nodes (IP addresses and ports for RPC/P2P), security considerations regarding open ports, and basic troubleshooting steps including checking logs via SSH."
+        },
+        {
+          "name": "install-environment.md",
+          "path": "docs/install-environment.md",
+          "type": "file",
+          "summary": "Provides a direct link to the official Substrate documentation page for installing the necessary development environment."
+        },
+        {
+          "name": "run-mainnet-node.md",
+          "path": "docs/run-mainnet-node.md",
+          "type": "file",
+          "summary": "Instructions for running a mainnet node. Provides steps for both local and Docker setups.\nLocal: Install environment, build with `--features mainnet`, and run the resulting binary (`./substrate --database auto`).\nDocker: Run the mainnet Docker image (e.g., `chainsupport/substarte-mainnet-node:latest`)."
+        },
+        {
+          "name": "run-testnet-node.md",
+          "path": "docs/run-testnet-node.md",
+          "type": "file",
+          "summary": ""
+        },
+        {
+          "name": "start-develop.md",
+          "path": "docs/start-develop.md",
+          "type": "file",
+          "summary": ""
+        },
+        {
+          "name": "tutorial.md",
+          "path": "docs/tutorial.md",
+          "type": "file",
+          "summary": ""
+        }
+      ],
+      "summary": null
+    },
+    {
+      "name": "node",
+      "path": "node",
+      "type": "directory",
+      "children": [
+        {
+          "name": "cli",
+          "path": "node/cli",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Cargo.toml",
+              "path": "node/cli/Cargo.toml",
+              "type": "file",
+              "summary": "Cargo manifest for the main node CLI (`staging-node-cli`). Defines the `substrate` binary entry point. Includes numerous dependencies: third-party (`clap`, `serde`, `jsonrpsee`, `log`), the main Polkadot SDK crate, local workspace crates (`node-rpc`, `node-primitives`, `node-inspect`, `runtime/common`, `ecdsa-keyring`, `babe-consensus-data-provider`), conditional runtime crates (`kitchensink-mainnet-runtime`, `kitchensink-testnet-runtime`), and a large set of Frontier crates for EVM compatibility. Also specifies dev-dependencies for testing (`criterion`, `tokio`, `substrate-cli-test-utils`) and build-dependencies (`clap`, `polkadot-sdk`). Defines feature flags: `cli` (default), `testnet`, `mainnet`, `runtime-benchmarks`, `try-runtime`."
+            },
+            {
+              "name": "build.rs",
+              "path": "node/cli/build.rs",
+              "type": "file",
+              "summary": "Build script for the `node/cli` crate. It's conditionally compiled based on the `cli` feature. When the feature is enabled, it includes `src/cli.rs`, uses `clap_complete` to generate shell auto-completion scripts for various shells (Bash, Zsh, Fish, etc.) into the build output directory, uses `substrate_build_script_utils` to generate `cargo:` keys (likely for build information), and sets up build re-run triggers if the Git HEAD changes.",
+              "uses": [
+                "clap::{CommandFactory, ValueEnum}",
+                "clap_complete::{generate_to, Shell}",
+                "polkadot_sdk::substrate_build_script_utils::{generate_cargo_keys, rerun_if_git_head_changed}",
+                "std::{env, fs, path::Path}"
+              ]
+            },
+            {
+              "name": "bin",
+              "path": "node/cli/bin",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "main.rs",
+                  "path": "node/cli/bin/main.rs",
+                  "type": "file",
+                  "summary": "The main entry point for the `substrate` binary. It simply calls the `run()` function from the `staging_node_cli` library crate (defined in `node/cli/src/lib.rs`).",
+                  "uses": [
+                    "polkadot_sdk::*",
+                    "staging_node_cli as node_cli"
+                  ]
+                }
+              ],
+              "summary": null
+            },
+            {
+              "name": "doc",
+              "path": "node/cli/doc",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "shell-completion.md",
+                  "path": "node/cli/doc/shell-completion.md",
+                  "type": "file",
+                  "summary": "Explains how to enable shell auto-completion for the `substrate` CLI command. It directs users to source the appropriate completion script (e.g., `target/release/completion-scripts/substrate.bash`) generated during the build process. Provides instructions for making the completion persistent by copying the script to a local directory (e.g., `~/.completion`) and adding a `source` command to the shell's profile file (e.g., `.bash_profile`). Also shows how to update the script after building a new version."
+                }
+              ],
+              "summary": null
+            },
+            {
+              "name": "src",
+              "path": "node/cli/src",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "benchmarking.rs",
+                  "path": "node/cli/src/benchmarking.rs",
+                  "type": "file",
+                  "summary": "Contains setup code for benchmarking commands (`super::command`). Provides extrinsic builders (`RemarkBuilder`, `TransferKeepAliveBuilder`) for generating `System::remark` and `Balances::transfer_keep_alive` transactions needed by `frame-benchmarking-cli`. Includes a helper function `create_extrinsic` to construct signed extrinsics using a specified runtime call, handling nonce fetching and signed extra data. Also provides `inherent_benchmark_data` for the `benchmark overhead` command. Conditionally compiled based on `testnet` or `mainnet` features.",
+                  "uses": [
+                    "crate::service::FullClient",
+                    "codec::Encode",
+                    "ecdsa_keyring::Keyring",
+                    "kitchensink_mainnet_runtime::{self as runtime, BalancesCall, SystemCall, UncheckedExtrinsic}",
+                    "kitchensink_testnet_runtime::{self as runtime, BalancesCall, SystemCall, UncheckedExtrinsic}",
+                    "polkadot_sdk::*",
+                    "sc_client_api::BlockBackend",
+                    "sp_core::Pair",
+                    "sp_runtime::SaturatedConversion",
+                    "node_primitives::{AccountId, Balance}",
+                    "sc_cli::Result",
+                    "sp_inherents::{InherentData, InherentDataProvider}",
+                    "sp_runtime::MultiSignature",
+                    "sp_runtime::OpaqueExtrinsic",
+                    "crate::service::fetch_nonce",
+                    "std::{sync::Arc, time::Duration}"
+                  ]
+                },
+                {
+                  "name": "cli.rs",
+                  "path": "node/cli/src/cli.rs",
+                  "type": "file",
+                  "summary": "Defines the command-line interface structure for the node using `clap`. Includes a main `Cli` struct with common runtime options (`sc_cli::RunCmd`, `sc_cli::MixnetParams`, disabling hardware benchmarks, storage monitor params) and an embedded `EthConfiguration` for Frontier/EVM settings (log limits, fee history, dev signer, backend type, SQL backend options). Defines a `Subcommand` enum listing various utilities like `inspect`, `benchmark`, `key`, `verify`, `sign`, `build-spec`, `check-block`, `export-blocks`, `export-state`, `import-blocks`, `purge-chain`, `revert`, and `chain-info`, mostly delegating to standard `sc_cli`, `frame-benchmarking-cli`, or local `node-inspect` commands.",
+                  "uses": [
+                    "polkadot_sdk::*",
+                    "clap::{self}",
+                    "node_inspect"
+                  ]
+                },
+                {
+                  "name": "client.rs",
+                  "path": "node/cli/src/client.rs",
+                  "type": "file",
+                  "summary": "Defines type aliases and traits related to the Substrate client and runtime APIs. Exports `FullBackend` and `FullClient` type aliases from `sc_service`. Defines `BaseRuntimeApiCollection` trait bundling essential Substrate runtime APIs (`Metadata`, `BlockBuilder`, `OffchainWorkerApi`, `SessionKeys`, `TaggedTransactionQueue`). Defines `RuntimeApiCollection` which extends `BaseRuntimeApiCollection` with additional APIs required by this specific node/runtime, including `EthCompatRuntimeApiCollection` (for Frontier), `GrandpaApi`, `AccountNonceApi`, and `TransactionPaymentApi`.",
+                  "uses": [
+                    "codec::Codec",
+                    "crate::eth::EthCompatRuntimeApiCollection",
+                    "polkadot_sdk::*",
+                    "sc_executor::WasmExecutor",
+                    "sp_runtime::traits::{Block as BlockT, MaybeDisplay}",
+                    "sc_service::{TFullBackend, TFullClient}",
+                    "sp_api::{ApiExt, Metadata}",
+                    "sp_block_builder::BlockBuilder",
+                    "sp_offchain::OffchainWorkerApi",
+                    "sp_session::SessionKeys",
+                    "sp_transaction_pool::runtime_api::TaggedTransactionQueue",
+                    "sp_consensus_grandpa::GrandpaApi",
+                    "frame_system_rpc_runtime_api::AccountNonceApi",
+                    "pallet_transaction_payment_rpc_runtime_api::TransactionPaymentApi"
+                  ]
+                },
+                {
+                  "name": "command.rs",
+                  "path": "node/cli/src/command.rs",
+                  "type": "file",
+                  "summary": "Implements the `SubstrateCli` trait for the main `Cli` struct, providing metadata like name, version, author, etc. Defines the main `run` function which parses command-line arguments using `Cli::from_args`. Based on the parsed subcommand (`None`, `Inspect`, `Benchmark`, `Key`, `Sign`, `Verify`, `Vanity`, `BuildSpec`, `CheckBlock`, `ExportBlocks`, `ExportState`, `ImportBlocks`, `PurgeChain`, `Revert`, `ChainInfo`), it creates a `Runner`, potentially initializes partial service components using `service::new_partial`, and then executes the corresponding command logic, often delegating to functions within `sc_cli` or `frame_benchmarking_cli`. For benchmarking commands, it handles feature checks (`runtime-benchmarks`), sets up specific extrinsic builders (`RemarkBuilder`, `TransferKeepAliveBuilder`), and calls the appropriate benchmark runner functions. For the default case (no subcommand), it starts the full node using `service::new_full`.",
+                  "uses": [
+                    "polkadot_sdk::*",
+                    "crate::{chain_spec, service, service::{new_partial, FullClient}, Cli, Subcommand}",
+                    "common_runtime::opaque::Block",
+                    "ecdsa_keyring::Keyring",
+                    "frame_benchmarking_cli::*",
+                    "kitchensink_mainnet_runtime::{ExistentialDeposit, RuntimeApi, EXISTENTIAL_DEPOSIT}",
+                    "kitchensink_testnet_runtime::{ExistentialDeposit, RuntimeApi, EXISTENTIAL_DEPOSIT}",
+                    "sc_network::{Litep2pNetworkBackend, NetworkBackend}",
+                    "sc_cli::{Result, SubstrateCli}",
+                    "sc_service::PartialComponents",
+                    "sp_runtime::traits::HashingFor",
+                    "std::sync::Arc",
+                    "crate::benchmarking::{inherent_benchmark_data, RemarkBuilder, TransferKeepAliveBuilder}",
+                    "sp_core::{ecdsa, Pair}"
+                  ]
+                },
+                {
+                  "name": "eth.rs",
+                  "path": "node/cli/src/eth.rs",
+                  "type": "file",
+                  "summary": "Defines Frontier-specific configurations, types, and tasks. Exports `BackendType` and `EthConfiguration` from `cli.rs`. Defines the `FrontierBackend` type alias. Provides `new_frontier_partial` to create initial Frontier components like `FilterPool` and `FeeHistoryCache` based on `EthConfiguration`. Defines the `EthCompatRuntimeApiCollection` trait required by runtimes supporting Frontier RPCs (`ConvertTransactionRuntimeApi`, `EthereumRuntimeRPCApi`). Implements `spawn_frontier_tasks` which launches background tasks necessary for Frontier functionality, including the mapping sync worker (for either KeyValue or SQL backend) and tasks for maintaining the filter pool and fee history cache.",
+                  "uses": [
+                    "crate::cli::{BackendType, EthConfiguration}",
+                    "futures::{future, prelude::*}",
+                    "polkadot_sdk::*",
+                    "std::{collections::BTreeMap, path::PathBuf, sync::{Arc, Mutex}, time::Duration}",
+                    "sc_client_api::BlockchainEvents",
+                    "sc_executor::HostFunctions",
+                    "sc_network_sync::SyncingService",
+                    "sc_service::{error::Error as ServiceError, Configuration, TaskManager}",
+                    "sp_api::ConstructRuntimeApi",
+                    "sp_core::H256",
+                    "sp_runtime::traits::Block as BlockT",
+                    "fc_consensus::FrontierBlockImport",
+                    "fc_rpc::EthTask",
+                    "fc_rpc_core::types::{FeeHistoryCache, FeeHistoryCacheLimit, FilterPool}",
+                    "fc_storage::{StorageOverride, StorageOverrideHandler}",
+                    "crate::client::{FullBackend, FullClient}",
+                    "fc_db::{Backend as FrontierDbBackend}",
+                    "fc_mapping_sync",
+                    "sp_api::ApiExt",
+                    "fp_rpc::{ConvertTransactionRuntimeApi, EthereumRuntimeRPCApi}"
+                  ]
+                },
+                {
+                  "name": "lib.rs",
+                  "path": "node/cli/src/lib.rs",
+                  "type": "file",
+                  "summary": "Library crate entry point for `staging-node-cli`. Conditionally includes and re-exports modules based on Cargo features. When the `cli` feature is enabled (default), it includes modules for benchmarking, chain spec generation, CLI parsing (`cli`), command execution (`command`), Ethereum configuration (`eth`), service creation (`service`), and client types (`client`), re-exporting types like `Cli`, `Subcommand`, and the main `run` function. A `browser` feature is mentioned but not used here. Conditionally compiled based on `testnet` or `mainnet` features."
+                },
+                {
+                  "name": "service.rs",
+                  "path": "node/cli/src/service.rs",
+                  "type": "file",
+                  "summary": "Defines the core service construction logic for the node. Includes functions `new_partial` and `new_full_base` which set up the main components like the client, backend, transaction pool, import queue, consensus engines (BABE, GRANDPA, BEEFY), telemetry, and Frontier integration. `new_partial` creates basic building blocks and wires the import pipeline. `new_full_base` builds upon `new_partial` adding networking, sync, and RPC handlers. Manages different node roles and features, configures wasm executor, inherent data providers, and prepares components for Frontier.",
+                  "uses": [
+                    "crate::eth::{db_config_dir, new_frontier_partial, spawn_frontier_tasks, BackendType, EthConfiguration, FrontierBackend, FrontierPartialComponents}",
+                    "crate::Cli",
+                    "babe_consensus_data_provider::BabeConsensusDataProvider",
+                    "fc_consensus::FrontierBlockImport",
+                    "polkadot_sdk::{sc_consensus_beefy as beefy, sc_consensus_beefy::BeefyRPCLinks, sc_consensus_grandpa as grandpa, sp_consensus_beefy as beefy_primitives, *}",
+                    "sc_network::Litep2pNetworkBackend",
+                    "sp_core::U256",
+                    "codec::Encode",
+                    "common_runtime::opaque::Block",
+                    "frame_benchmarking_cli::SUBSTRATE_REFERENCE_HARDWARE",
+                    "frame_system_rpc_runtime_api::AccountNonceApi",
+                    "futures::prelude::*",
+                    "kitchensink_mainnet_runtime::RuntimeApi",
+                    "kitchensink_testnet_runtime::RuntimeApi",
+                    "fc_storage::StorageOverrideHandler",
+                    "kitchensink_mainnet_runtime::TransactionConverter",
+                    "kitchensink_testnet_runtime::TransactionConverter",
+                    "sc_client_api::{Backend as BackendT, BlockBackend}",
+                    "sc_consensus_babe::{self, BabeWorkerHandle, SlotProportion}",
+                    "sc_network::{event::Event, service::traits::NetworkService, NetworkBackend, NetworkEventStream}",
+                    "sc_network_sync::{strategy::warp::WarpSyncParams, SyncingService}",
+                    "sc_service::{config::Configuration, error::Error as ServiceError, RpcHandlers, TaskManager}",
+                    "sc_statement_store::Store as StatementStore",
+                    "sc_telemetry::{Telemetry, TelemetryWorker}",
+                    "sc_transaction_pool_api::OffchainTransactionPoolFactory",
+                    "sp_api::ProvideRuntimeApi",
+                    "sp_core::crypto::Pair",
+                    "sp_runtime::{generic, traits::Block as BlockT, SaturatedConversion}",
+                    "std::{path::Path, sync::Arc}",
+                    "sp_io::SubstrateHostFunctions",
+                    "sp_statement_store::runtime_api::HostFunctions",
+                    "frame_benchmarking::benchmarking::HostFunctions",
+                    "sc_executor::WasmExecutor",
+                    "sc_service::{TFullClient, TFullBackend}",
+                    "sc_consensus::LongestChain",
+                    "grandpa::GrandpaBlockImport",
+                    "beefy::import::BeefyBlockImport",
+                    "beefy_primitives::ecdsa_crypto::{AuthorityId, Public}",
+                    "sc_transaction_pool::FullPool",
+                    "sp_timestamp::InherentDataProvider",
+                    "sp_consensus_babe::inherents::InherentDataProvider",
+                    "sc_mixnet"
+                  ]
+                },
+                {
+                  "name": "chain_spec",
+                  "path": "node/cli/src/chain_spec",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "mainnet.rs",
+                      "path": "node/cli/src/chain_spec/mainnet.rs",
+                      "type": "file",
+                      "summary": "Defines the chain specification for the mainnet version of the node. Includes helper functions (`get_from_seed`, `get_account_id_from_seed`, `authority_keys_from_alice`, `configure_accounts`) to generate keys and initial account configurations. Defines the `ChainSpecExtension` struct and the specialized `ChainSpec` type. Contains `testnet_genesis` function (potentially misnamed) for configuring genesis state including authorities, nominators, endowed accounts, staker status, root key, EVM chain ID, and balances. The `development_config` function builds the final `ChainSpec` object for local mainnet development.",
+                      "uses": [
+                        "common_runtime::AccountId",
+                        "ecdsa_keyring::Keyring",
+                        "hex_literal::hex",
+                        "kitchensink_mainnet_runtime::{constants::currency::*, wasm_binary_unwrap, Block, MaxNominations, SessionKeys, StakerStatus}",
+                        "pallet_im_online::sr25519::AuthorityId as ImOnlineId",
+                        "polkadot_sdk::*",
+                        "sc_chain_spec::ChainSpecExtension",
+                        "sc_service::ChainType",
+                        "sc_telemetry::TelemetryEndpoints",
+                        "serde::{Deserialize, Serialize}",
+                        "sp_authority_discovery::AuthorityId as AuthorityDiscoveryId",
+                        "sp_consensus_babe::AuthorityId as BabeId",
+                        "sp_consensus_beefy::ecdsa_crypto::AuthorityId as BeefyId",
+                        "sp_consensus_grandpa::AuthorityId as GrandpaId",
+                        "sp_core::{crypto::UncheckedInto, ecdsa, sr25519, Pair, Public, H160, U256}",
+                        "sp_mixnet::types::AuthorityId as MixnetId",
+                        "sp_runtime::{traits::{IdentifyAccount, Verify}, Perbill}",
+                        "sp_std::collections::btree_map::BTreeMap",
+                        "std::str::FromStr",
+                        "kitchensink_mainnet_runtime::RuntimeGenesisConfig",
+                        "node_primitives::{Balance, Signature}",
+                        "serde_json"
+                      ]
+                    },
+                    {
+                      "name": "mod.rs",
+                      "path": "node/cli/src/chain_spec/mod.rs",
+                      "type": "file",
+                      "summary": "Module declaration file for `chain_spec`. It conditionally includes and makes public the `mainnet` or `testnet` submodules based on the corresponding Cargo features being enabled."
+                    },
+                    {
+                      "name": "testnet.rs",
+                      "path": "node/cli/src/chain_spec/testnet.rs",
+                      "type": "file",
+                      "summary": "Defines the chain specification for the testnet version of the node. Structurally very similar to `mainnet.rs`, it includes the same helper functions (`get_from_seed`, `get_account_id_from_seed`, `authority_keys_from_alice`, `authority_keys_from_bob`, `configure_accounts`) and `ChainSpecExtension`. It configures the genesis state for a testnet using `testnet_genesis` and builds the `development_config` ChainSpec object. Uses the `kitchensink_testnet_runtime` types and WASM binary.",
+                      "uses": [
+                        "common_runtime::AccountId",
+                        "ecdsa_keyring::Keyring",
+                        "hex_literal::hex",
+                        "kitchensink_testnet_runtime::{constants::currency::*, wasm_binary_unwrap, Block, MaxNominations, SessionKeys, StakerStatus}",
+                        "pallet_im_online::sr25519::AuthorityId as ImOnlineId",
+                        "polkadot_sdk::*",
+                        "sc_chain_spec::ChainSpecExtension",
+                        "sc_service::ChainType",
+                        "sc_telemetry::TelemetryEndpoints",
+                        "serde::{Deserialize, Serialize}",
+                        "sp_authority_discovery::AuthorityId as AuthorityDiscoveryId",
+                        "sp_consensus_babe::AuthorityId as BabeId",
+                        "sp_consensus_beefy::ecdsa_crypto::AuthorityId as BeefyId",
+                        "sp_consensus_grandpa::AuthorityId as GrandpaId",
+                        "sp_core::{crypto::UncheckedInto, ecdsa, sr25519, Pair, Public, H160, U256}",
+                        "sp_mixnet::types::AuthorityId as MixnetId",
+                        "sp_runtime::{traits::{IdentifyAccount, Verify}, Perbill}",
+                        "sp_std::collections::btree_map::BTreeMap",
+                        "std::str::FromStr",
+                        "kitchensink_testnet_runtime::RuntimeGenesisConfig",
+                        "node_primitives::{Balance, Signature}",
+                        "serde_json"
+                      ]
+                    }
+                  ],
+                  "summary": null
+                }
+              ],
+              "summary": null
+            }
+          ],
+          "summary": null
+        },
+        {
+          "name": "inspect",
+          "path": "node/inspect",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Cargo.toml",
+              "path": "node/inspect/Cargo.toml",
+              "type": "file",
+              "summary": "Cargo manifest for the `staging-node-inspect` crate, providing block/extrinsic inspection capabilities. Depends on `clap` for command-line parsing, `codec` for SCALE encoding/decoding, `thiserror` for error handling, and various Substrate client/service/primitive crates (`sc-cli`, `sc-client-api`, `sc-service`, `sp-blockchain`, `sp-core`, `sp-io`, `sp-runtime`, `sp-statement-store`) from the Polkadot SDK. Includes a `runtime-benchmarks` feature."
+            },
+            {
+              "name": "src",
+              "path": "node/inspect/src",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "cli.rs",
+                  "path": "node/inspect/src/cli.rs",
+                  "type": "file",
+                  "summary": "Defines the CLI structure for the `inspect` subcommand using `clap`. It includes a main `InspectCmd` which holds shared CLI parameters (`SharedParams`, `ImportParams` from `sc-cli`) and an `InspectSubCmd` enum. The subcommands allow inspecting either a `Block` or an `Extrinsic`, accepting input as a block hash/number, block:index combination, or SCALE-encoded hex bytes.",
+                  "uses": [
+                    "sc_cli::{ImportParams, SharedParams}",
+                    "clap::{self}"
+                  ]
+                },
+                {
+                  "name": "command.rs",
+                  "path": "node/inspect/src/command.rs",
+                  "type": "file",
+                  "summary": "Implements the execution logic for the `inspect` command. Defines the required `HostFunctions`. The `run` method on `InspectCmd` creates a new full client (`sc_service::new_full_client`) using the node's configuration and a Wasm executor. It then instantiates an `Inspector` with this client. Based on the subcommand (`Block` or `Extrinsic`), it parses the input string, calls the corresponding method (`inspect.block` or `inspect.extrinsic`) on the `Inspector`, prints the result, and handles potential errors. Also implements `CliConfiguration` to provide access to shared and import parameters.",
+                  "uses": [
+                    "crate::{cli::{InspectCmd, InspectSubCmd}, Inspector}",
+                    "sc_cli::{CliConfiguration, ImportParams, Result, SharedParams}",
+                    "sc_service::Configuration",
+                    "sp_runtime::traits::Block",
+                    "sp_io::SubstrateHostFunctions",
+                    "sp_statement_store::runtime_api::HostFunctions",
+                    "sc_service::{new_wasm_executor, new_full_client}"
+                  ]
+                },
+                {
+                  "name": "lib.rs",
+                  "path": "node/inspect/src/lib.rs",
+                  "type": "file",
+                  "summary": "Provides the core logic for the `inspect` command. Defines the `PrettyPrinter` trait for custom formatting (with a default `DebugPrinter`). Defines the `Inspector` struct which holds a `ChainAccess` trait object (allowing interaction with the blockchain backend) and a printer. The `Inspector` provides methods (`block`, `extrinsic`) to retrieve and format block/extrinsic data based on input addresses (`BlockAddress`, `ExtrinsicAddress`). These address types parse input strings that can represent block hash, block number, hex-encoded bytes, or block:index combinations. Error handling is managed via a custom `Error` enum. Includes tests for parsing address strings.",
+                  "uses": [
+                    "crate::{cli::{InspectCmd, InspectSubCmd}, command}",
+                    "codec::{Decode, Encode}",
+                    "sc_client_api::BlockBackend",
+                    "sp_blockchain::HeaderBackend",
+                    "sp_core::hexdisplay::HexDisplay",
+                    "sp_runtime::{generic::BlockId, traits::{Block, Hash, HashingFor, NumberFor}}",
+                    "std::{fmt, fmt::Debug, marker::PhantomData, str::FromStr}",
+                    "thiserror"
+                  ]
+                }
+              ],
+              "summary": null
+            }
+          ],
+          "summary": null
+        },
+        {
+          "name": "primitives",
+          "path": "node/primitives",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Cargo.toml",
+              "path": "node/primitives/Cargo.toml",
+              "type": "file",
+              "summary": ""
+            },
+            {
+              "name": "src",
+              "path": "node/primitives/src",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "lib.rs",
+                  "path": "node/primitives/src/lib.rs",
+                  "type": "file",
+                  "summary": ""
+                }
+              ],
+              "summary": null
+            }
+          ],
+          "summary": null
+        },
+        {
+          "name": "rpc",
+          "path": "node/rpc",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Cargo.toml",
+              "path": "node/rpc/Cargo.toml",
+              "type": "file",
+              "summary": ""
+            },
+            {
+              "name": "src",
+              "path": "node/rpc/src",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "eth.rs",
+                  "path": "node/rpc/src/eth.rs",
+                  "type": "file",
+                  "summary": "Configures and instantiates the Frontier/Ethereum RPC extensions. Defines the `EthDeps` struct containing necessary components (client, pool, network, sync service, backend, overrides, caches, etc.). The main function `create_eth` takes these dependencies and merges various Ethereum RPC APIs (`Eth`, `EthFilter`, `EthPubSub`, `Net`, `Web3`, `Debug`) into the main `RpcModule`. Handles configuration like enabling the dev signer and setting cache limits.",
+                  "uses": [
+                    "std::{collections::BTreeMap, sync::Arc}",
+                    "jsonrpsee::RpcModule",
+                    "common_runtime::opaque::Block",
+                    "fc_rpc::pending::ConsensusDataProvider",
+                    "sc_client_api::{backend::{Backend, StorageProvider}, client::BlockchainEvents, AuxStore, UsageProvider}",
+                    "sc_network::service::traits::NetworkService",
+                    "sc_network_sync::SyncingService",
+                    "sc_rpc::SubscriptionTaskExecutor",
+                    "sc_transaction_pool::{ChainApi, Pool}",
+                    "sc_transaction_pool_api::TransactionPool",
+                    "sp_api::{CallApiAt, ProvideRuntimeApi}",
+                    "sp_block_builder::BlockBuilder as BlockBuilderApi",
+                    "sp_blockchain::{Error as BlockChainError, HeaderBackend, HeaderMetadata}",
+                    "sp_core::H256",
+                    "sp_inherents::CreateInherentDataProviders",
+                    "sp_runtime::traits::Block as BlockT",
+                    "fc_rpc::{EthBlockDataCacheTask, EthConfig}",
+                    "fc_rpc_core::types::{FeeHistoryCache, FeeHistoryCacheLimit, FilterPool}",
+                    "fc_storage::StorageOverride",
+                    "fp_rpc::{ConvertTransaction, ConvertTransactionRuntimeApi, EthereumRuntimeRPCApi}",
+                    "fc_api::Backend as FrontierBackend",
+                    "fc_mapping_sync::{EthereumBlockNotificationSinks, EthereumBlockNotification}",
+                    "fc_rpc::{Debug, DebugApiServer, Eth, EthApiServer, EthDevSigner, EthFilter, EthFilterApiServer, EthPubSub, EthPubSubApiServer, EthSigner, Net, NetApiServer, Web3, Web3ApiServer}"
+                  ]
+                },
+                {
+                  "name": "lib.rs",
+                  "path": "node/rpc/src/lib.rs",
+                  "type": "file",
+                  "summary": "Defines node RPC methods, combining Substrate and Frontier RPCs. Includes `eth::create_eth` for Ethereum compatibility. Defines dependency structs (`BabeDeps`, `GrandpaDeps`, `BeefyDeps`, `FullDeps`). The `create_full` function merges modules like `System`, `TransactionPayment`, `Mmr`, `Babe`, `Grandpa`, `Beefy`, `SyncState`, `ChainSpec`, `Dev`, etc.",
+                  "uses": [
+                    "crate::eth::*",
+                    "sp_inherents::CreateInherentDataProviders",
+                    "std::sync::Arc",
+                    "common_runtime::{opaque::Block, AccountId, Balance, BlockNumber, Hash, Nonce}",
+                    "fc_rpc::pending::ConsensusDataProvider",
+                    "jsonrpsee::RpcModule",
+                    "sc_client_api::{backend::StorageProvider, client::BlockchainEvents, AuxStore, UsageProvider}",
+                    "sc_consensus_babe::BabeWorkerHandle",
+                    "sc_consensus_beefy::communication::notification::{BeefyBestBlockStream, BeefyVersionedFinalityProofStream}",
+                    "sc_consensus_grandpa::{FinalityProofProvider, GrandpaApi, GrandpaJustificationStream, SharedAuthoritySet, SharedVoterState}",
+                    "sc_rpc::SubscriptionTaskExecutor",
+                    "sc_rpc_api::DenyUnsafe",
+                    "sc_transaction_pool::{ChainApi, Pool}",
+                    "sc_transaction_pool_api::TransactionPool",
+                    "sp_api::{CallApiAt, ProvideRuntimeApi}",
+                    "sp_application_crypto::RuntimeAppPublic",
+                    "sp_block_builder::BlockBuilder",
+                    "sp_blockchain::{Backend as BlockchainBackend, Error as BlockChainError, HeaderBackend, HeaderMetadata}",
+                    "sp_consensus::SelectChain",
+                    "sp_consensus_babe::BabeApi",
+                    "sp_consensus_beefy::AuthorityIdBound",
+                    "sp_keystore::KeystorePtr",
+                    "sp_runtime::traits::{Block as BlockT, Hash as HashT, HashingFor, Header as HeaderT, NumberFor}",
+                    "fc_rpc::EthConfig",
+                    "fc_rpc::frontier_backend_client::SystemAccountId20StorageOverride",
+                    "fc_mapping_sync::{EthereumBlockNotificationSinks, EthereumBlockNotification}",
+                    "substrate_frame_rpc_system::AccountNonceApi",
+                    "mmr_rpc::{MmrRuntimeApi, Mmr, MmrApiServer}",
+                    "pallet_transaction_payment_rpc::{TransactionPaymentRuntimeApi, TransactionPayment, TransactionPaymentApiServer}",
+                    "sc_consensus_babe_rpc::{Babe, BabeApiServer}",
+                    "sc_consensus_beefy_rpc::{Beefy, BeefyApiServer}",
+                    "sc_consensus_grandpa_rpc::{Grandpa, GrandpaApiServer}",
+                    "sc_rpc::{dev::{Dev, DevApiServer}, mixnet::MixnetApiServer, statement::StatementApiServer}",
+                    "sc_rpc_spec_v2::chain_spec::{ChainSpec, ChainSpecApiServer}",
+                    "sc_sync_state_rpc::{SyncState, SyncStateApiServer}",
+                    "substrate_frame_rpc_system::{System, SystemApiServer}",
+                    "substrate_state_trie_migration_rpc::{StateMigration, StateMigrationApiServer}",
+                    "fp_rpc::{ConvertTransactionRuntimeApi, EthereumRuntimeRPCApi, ConvertTransaction}",
+                    "sp_statement_store::StatementStore"
+                  ]
+                }
+              ],
+              "summary": null
+            }
+          ],
+          "summary": null
+        }
+      ],
+      "summary": null
+    },
+    {
+      "name": "runtime",
+      "path": "runtime",
+      "type": "directory",
+      "children": [
+        {
+          "name": "common",
+          "path": "runtime/common",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Cargo.toml",
+              "path": "runtime/common/Cargo.toml",
+              "type": "file",
+              "summary": "Cargo manifest for the `common-runtime` crate. Contains common types and configurations shared between different runtime versions (e.g., testnet and mainnet). Depends on `node-primitives` (local path) and `polkadot-sdk` (runtime features)."
+            },
+            {
+              "name": "src",
+              "path": "runtime/common/src",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "lib.rs",
+                  "path": "runtime/common/src/lib.rs",
+                  "type": "file",
+                  "summary": "Library entry point for `common-runtime`. Re-exports all types from `node-primitives`. Defines an `opaque` module containing type aliases for `UncheckedExtrinsic`, `Header`, `Block`, and `BlockId` using concrete types from `sp_runtime` (specifically `generic::Block` with the common `Header` and `OpaqueExtrinsic`). Marks the crate as `no_std` when the `std` feature is not enabled.",
+                  "uses": [
+                    "node_primitives::*",
+                    "polkadot_sdk::*",
+                    "polkadot_sdk::sp_runtime::OpaqueExtrinsic",
+                    "sp_runtime::generic::{Header, Block, BlockId}",
+                    "polkadot_sdk::sp_runtime::traits::BlakeTwo256"
+                  ]
+                }
+              ],
+              "summary": null
+            }
+          ],
+          "summary": null
+        },
+        {
+          "name": "mainnet",
+          "path": "runtime/mainnet",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Cargo.toml",
+              "path": "runtime/mainnet/Cargo.toml",
+              "type": "file",
+              "summary": "Cargo manifest for the `kitchensink-mainnet-runtime`. Defines dependencies for the mainnet runtime logic, including `codec`, `scale-info`, `log`, `polkadot-sdk`, `node-primitives`, `pallet-balances`, and various Frontier crates (`fp-*`, `pallet-base-fee`, `pallet-dynamic-fee`, `pallet-ethereum`, `pallet-evm`, etc.). Includes build dependency `substrate-wasm-builder` (optional, enabled by `std` feature). Defines features: `std`, `runtime-benchmarks`, `try-runtime`, `metadata-hash`, `with-tracing`, `insecure_zero_ed`."
+            },
+            {
+              "name": "build.rs",
+              "path": "runtime/mainnet/build.rs",
+              "type": "file",
+              "summary": "Build script for the mainnet runtime. When the `std` feature is enabled, it uses `substrate_wasm_builder` to compile the runtime to WASM. It configures the builder to use the current project, export the heap base, and import memory, then builds the WASM blob.",
+              "uses": [
+                "substrate_wasm_builder::WasmBuilder"
+              ]
+            },
+            {
+              "name": "src",
+              "path": "runtime/mainnet/src",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "assets_api.rs",
+                  "path": "runtime/mainnet/src/assets_api.rs",
+                  "type": "file",
+                  "summary": "Defines a runtime API trait `AssetsApi` using the `sp_api::decl_runtime_apis!` macro. This API allows querying asset balances for a given account. It declares one function `account_balances` which takes an `AccountId` and returns a vector of tuples, each containing an `AssetId` and its corresponding `AssetBalance`.",
+                  "uses": [
+                    "polkadot_sdk::*",
+                    "codec::Codec",
+                    "sp_std::vec::Vec",
+                    "sp_api::decl_runtime_apis"
+                  ]
+                },
+                {
+                  "name": "constants.rs",
+                  "path": "runtime/mainnet/src/constants.rs",
+                  "type": "file",
+                  "summary": "Defines constants used within the runtime, organized into modules `currency` and `time`.\n`currency`: Defines units like `MILLICENTS`, `CENTS`, `DOLLARS` based on the `Balance` type from `node-primitives`, and a `deposit` function calculating storage deposit costs.\n`time`: Defines time-related constants based on `BlockNumber` and `Moment` from `node-primitives`. Includes `MILLISECS_PER_BLOCK`, `SECS_PER_BLOCK`, `SLOT_DURATION`, `PRIMARY_PROBABILITY` for BABE, and `EPOCH_DURATION_IN_BLOCKS` / `EPOCH_DURATION_IN_SLOTS`. Also defines convenience units `MINUTES`, `HOURS`, `DAYS` in terms of block numbers. Notes indicate that slot and epoch durations cannot be changed post-genesis.",
+                  "uses": [
+                    "node_primitives::{Balance, BlockNumber, Moment}"
+                  ]
+                },
+                {
+                  "name": "impls.rs",
+                  "path": "runtime/mainnet/src/impls.rs",
+                  "type": "file",
+                  "summary": "Provides runtime implementation details, focusing on fee handling. Includes `Author` struct (implements `OnUnbalanced` for `Balances`) and `CreditToBlockAuthor` (implements `HandleCredit` for `AssetTxPayment`) to direct fees to the block author. Contains extensive tests (`multiplier_tests`) for the transaction fee `Multiplier` logic using `TargetedFeeAdjustment`, verifying behavior under different block fullness scenarios and comparing against reference calculations.",
+                  "uses": [
+                    "polkadot_sdk::*",
+                    "frame_support::traits::{fungibles::{Balanced, Credit}, Currency, OnUnbalanced}",
+                    "pallet_asset_tx_payment::HandleCredit",
+                    "crate::{AccountId, Assets, Authorship, Balances, NegativeImbalance, Runtime}",
+                    "frame_support::dispatch::DispatchClass",
+                    "frame_support::weights::{Weight, WeightToFee}",
+                    "pallet_transaction_payment::{Multiplier, TargetedFeeAdjustment}",
+                    "sp_runtime::{assert_eq_error_rate, traits::{Convert, One, Zero}, BuildStorage, FixedPointNumber}",
+                    "crate::{AdjustmentVariable, MaximumMultiplier, MinimumMultiplier, RuntimeBlockWeights as BlockWeights, System, TargetBlockFullness, TransactionPayment}",
+                    "sp_io::TestExternalities",
+                    "frame_system::GenesisConfig",
+                    "pallet_authorship::Pallet"
+                  ]
+                },
+                {
+                  "name": "lib.rs",
+                  "path": "runtime/mainnet/src/lib.rs",
+                  "type": "file",
+                  "summary": "'Too large' - Main runtime definition (`lib.rs`) for `kitchensink-mainnet-runtime`. Uses `construct_runtime!` to assemble numerous FRAME pallets (System, Balances, Staking, Consensus, EVM, Governance, Assets, etc.). Implements `Config` for each pallet, defining parameters and connections. Defines runtime versions, opaque types, `RuntimeCall`, `SignedExtra`, `Executive`, and implements runtime APIs (`impl_runtime_apis!`) for node interaction. Includes Frontier/EVM integration.",
+                  "uses": [
+                    "Too many to list (see file content/outline)"
+                  ]
+                },
+                {
+                  "name": "precompiles.rs",
+                  "path": "runtime/mainnet/src/precompiles.rs",
+                  "type": "file",
+                  "summary": "Defines the set of EVM precompiled contracts available in the runtime using `FrontierPrecompiles` which implements `PrecompileSet`. Maps specific H160 addresses to standard Ethereum precompiles (`ECRecover`, `Sha256`, `Ripemd160`, `Identity`, `Modexp`) and other precompiles (`Sha3FIPS256`, `ECRecoverPublicKey`) provided by Frontier pallets. `execute` dispatches calls based on address, `is_precompile` checks for registered precompiles.",
+                  "uses": [
+                    "crate::sp_core::H160",
+                    "core::marker::PhantomData",
+                    "pallet_evm::{IsPrecompileResult, Precompile, PrecompileHandle, PrecompileResult, PrecompileSet}",
+                    "pallet_evm_precompile_modexp::Modexp",
+                    "pallet_evm_precompile_sha3fips::Sha3FIPS256",
+                    "pallet_evm_precompile_simple::{ECRecover, ECRecoverPublicKey, Identity, Ripemd160, Sha256}",
+                    "pallet_evm::Config"
+                  ]
+                },
+                {
+                  "name": "voter_bags.rs",
+                  "path": "runtime/mainnet/src/voter_bags.rs",
+                  "type": "file",
+                  "summary": "Defines configuration constants for the voter bags list pallet (`pallet_bags_list`). Contains `EXISTENTIAL_WEIGHT`, `CONSTANT_RATIO` (both marked unused), and the pre-calculated `THRESHOLDS` array. The `THRESHOLDS` array holds 200 `u64` values representing the upper bounds for each voter bag, used to efficiently manage lists of voters/nominators based on stake size."
+                }
+              ],
+              "summary": null
+            }
+          ],
+          "summary": null
+        },
+        {
+          "name": "testnet",
+          "path": "runtime/testnet",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Cargo.toml",
+              "path": "runtime/testnet/Cargo.toml",
+              "type": "file",
+              "summary": "Cargo manifest for the `kitchensink-testnet-runtime`. Very similar to the mainnet manifest, it defines dependencies for the testnet runtime logic. Includes `codec`, `scale-info`, `log`, `polkadot-sdk`, `node-primitives`, `pallet-balances`, and various Frontier crates (`fp-*`, `pallet-base-fee`, `pallet-dynamic-fee`, `pallet-ethereum`, `pallet-evm`, etc.). Includes build dependency `substrate-wasm-builder`. Defines features: `std`, `runtime-benchmarks`, `try-runtime`, `metadata-hash`, `with-tracing`, `insecure_zero_ed`."
+            },
+            {
+              "name": "build.rs",
+              "path": "runtime/testnet/build.rs",
+              "type": "file",
+              "summary": "Build script for the testnet runtime. Identical to the mainnet build script, it uses `substrate_wasm_builder` to compile the runtime to WASM when the `std` feature is enabled, configuring it to use the current project, export heap base, and import memory.",
+              "uses": [
+                "substrate_wasm_builder::WasmBuilder"
+              ]
+            },
+            {
+              "name": "src",
+              "path": "runtime/testnet/src",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "assets_api.rs",
+                  "path": "runtime/testnet/src/assets_api.rs",
+                  "type": "file",
+                  "summary": "Defines the `AssetsApi` runtime API trait. Identical to the one in the mainnet runtime, it allows querying asset balances (`account_balances` function) for a given account.",
+                  "uses": [
+                    "polkadot_sdk::*",
+                    "codec::Codec",
+                    "sp_std::vec::Vec",
+                    "sp_api::decl_runtime_apis"
+                  ]
+                },
+                {
+                  "name": "constants.rs",
+                  "path": "runtime/testnet/src/constants.rs",
+                  "type": "file",
+                  "summary": "Defines runtime constants for currency and time. Identical to the mainnet `constants.rs`, defining `MILLICENTS`, `CENTS`, `DOLLARS`, `deposit`, `MILLISECS_PER_BLOCK`, `SLOT_DURATION`, `EPOCH_DURATION_IN_BLOCKS`, `MINUTES`, `HOURS`, `DAYS`, etc.",
+                  "uses": [
+                    "node_primitives::{Balance, BlockNumber, Moment}"
+                  ]
+                },
+                {
+                  "name": "impls.rs",
+                  "path": "runtime/testnet/src/impls.rs",
+                  "type": "file",
+                  "summary": "Provides runtime implementation details for the testnet runtime, primarily identical to the mainnet version. Includes `Author` (implements `OnUnbalanced` for `Balances`) and `CreditToBlockAuthor` (implements `HandleCredit` for `AssetTxPayment`) for directing fees to the block author. Contains the same extensive test suite (`multiplier_tests`) for the transaction fee `Multiplier` logic and `TargetedFeeAdjustment`.",
+                  "uses": [
+                    "polkadot_sdk::*",
+                    "frame_support::traits::{fungibles::{Balanced, Credit}, Currency, OnUnbalanced}",
+                    "pallet_asset_tx_payment::HandleCredit",
+                    "crate::{AccountId, Assets, Authorship, Balances, NegativeImbalance, Runtime}",
+                    "frame_support::dispatch::DispatchClass",
+                    "frame_support::weights::{Weight, WeightToFee}",
+                    "pallet_transaction_payment::{Multiplier, TargetedFeeAdjustment}",
+                    "sp_runtime::{assert_eq_error_rate, traits::{Convert, One, Zero}, BuildStorage, FixedPointNumber}",
+                    "crate::{AdjustmentVariable, MaximumMultiplier, MinimumMultiplier, RuntimeBlockWeights as BlockWeights, System, TargetBlockFullness, TransactionPayment}",
+                    "sp_io::TestExternalities",
+                    "frame_system::GenesisConfig",
+                    "pallet_authorship::Pallet"
+                  ]
+                },
+                {
+                  "name": "lib.rs",
+                  "path": "runtime/testnet/src/lib.rs",
+                  "type": "file",
+                  "summary": "'Too large' - Main runtime definition (`lib.rs`) for `kitchensink-testnet-runtime`. Almost identical in structure and included pallets to the mainnet runtime. Uses `construct_runtime!` to assemble pallets, implements `Config` traits, defines runtime versions (spec_name \"testnet\"), opaque types, `RuntimeCall`, `SignedExtra`, `Executive`, and runtime APIs. Includes Frontier/EVM integration. Differences from mainnet are likely in genesis config and minor parameter tuning.",
+                  "uses": [
+                    "Too many to list (see file content/outline)"
+                  ]
+                },
+                {
+                  "name": "precompiles.rs",
+                  "path": "runtime/testnet/src/precompiles.rs",
+                  "type": "file",
+                  "summary": "Defines the EVM precompiled contracts for the testnet runtime. Identical to the mainnet precompiles file, it uses `FrontierPrecompiles` to map standard H160 addresses to Ethereum (`ECRecover`, `Sha256`, `Ripemd160`, `Identity`, `Modexp`) and other (`Sha3FIPS256`, `ECRecoverPublicKey`) precompiles.",
+                  "uses": [
+                    "crate::sp_core::H160",
+                    "core::marker::PhantomData",
+                    "pallet_evm::{IsPrecompileResult, Precompile, PrecompileHandle, PrecompileResult, PrecompileSet}",
+                    "pallet_evm_precompile_modexp::Modexp",
+                    "pallet_evm_precompile_sha3fips::Sha3FIPS256",
+                    "pallet_evm_precompile_simple::{ECRecover, ECRecoverPublicKey, Identity, Ripemd160, Sha256}",
+                    "pallet_evm::Config"
+                  ]
+                },
+                {
+                  "name": "voter_bags.rs",
+                  "path": "runtime/testnet/src/voter_bags.rs",
+                  "type": "file",
+                  "summary": "Defines configuration constants for the voter bags list pallet (`pallet_bags_list`) for the testnet runtime. Identical to the mainnet `voter_bags.rs`, containing the same (unused) `EXISTENTIAL_WEIGHT`, `CONSTANT_RATIO`, and the pre-calculated `THRESHOLDS` array used for managing voter lists based on stake size."
+                }
+              ],
+              "summary": null
+            }
+          ],
+          "summary": null
+        }
+      ],
+      "summary": null
+    },
+    {
+      "name": "scripts",
+      "path": "scripts",
+      "type": "directory",
+      "children": [
+        {
+          "name": "build_mainnet_chain_spec.sh",
+          "path": "scripts/build_mainnet_chain_spec.sh",
+          "type": "file",
+          "summary": ""
+        },
+        {
+          "name": "build_testnet_chain_spec.sh",
+          "path": "scripts/build_testnet_chain_spec.sh",
+          "type": "file",
+          "summary": ""
+        },
+        {
+          "name": "full_node_init.sh",
+          "path": "scripts/full_node_init.sh",
+          "type": "file",
+          "summary": ""
+        },
+        {
+          "name": "generate_session_keys.sh",
+          "path": "scripts/generate_session_keys.sh",
+          "type": "file",
+          "summary": "Generates new session keys for grandpa (ed25519), babe (sr25519), im_online (sr25519), authority_discovery (sr25519), mixnet (sr25519), and beefy (ecdsa). Uses `substrate key generate` for each, outputs JSON, and saves each key to a file (e.g., `grandpa.json`) in a new `keystore` directory."
+        },
+        {
+          "name": "insert_session_keys.sh",
+          "path": "scripts/insert_session_keys.sh",
+          "type": "file",
+          "summary": ""
+        },
+        {
+          "name": "setup_docker_node.sh",
+          "path": "scripts/setup_docker_node.sh",
+          "type": "file",
+          "summary": ""
+        },
+        {
+          "name": "setup_node.sh",
+          "path": "scripts/setup_node.sh",
+          "type": "file",
+          "summary": ""
+        },
+        {
+          "name": "validator_node_init.sh",
+          "path": "scripts/validator_node_init.sh",
+          "type": "file",
+          "summary": ""
+        },
+        {
+          "name": "temp",
+          "path": "scripts/temp",
+          "type": "directory",
+          "children": [
+            {
+              "name": "generate_chain_spec.sh",
+              "path": "scripts/temp/generate_chain_spec.sh",
+              "type": "file",
+              "summary": ""
+            },
+            {
+              "name": "generate_keys_by_password_and_index.sh",
+              "path": "scripts/temp/generate_keys_by_password_and_index.sh",
+              "type": "file",
+              "summary": "Generates ed25519, sr25519, and ecdsa keys using `subkey inspect`. Uses a secret phrase ($1) and index ($2) with specific derivation paths. Outputs keys as JSON."
+            },
+            {
+              "name": "generate_node_key.sh",
+              "path": "scripts/temp/generate_node_key.sh",
+              "type": "file",
+              "summary": "Generates a node key using the `substrate key generate-node-key` command and stores it within the `db` directory (specifically `db/chains/local_testnet/network/secret_ed25519` according to the comment)."
+            },
+            {
+              "name": "generate_session_keys.sh",
+              "path": "scripts/temp/generate_session_keys.sh",
+              "type": "file",
+              "summary": ""
+            },
+            {
+              "name": "inspect_node_key.sh",
+              "path": "scripts/temp/inspect_node_key.sh",
+              "type": "file",
+              "summary": "Inspects the node key stored in the file `db/chains/local_testnet/network/secret_ed25519` using the `substrate key inspect-node-key` command."
+            },
+            {
+              "name": "normal_node_init.sh",
+              "path": "scripts/temp/normal_node_init.sh",
+              "type": "file",
+              "summary": "Initializes a \"normal\" (likely non-validator) node. Generates a node key using `substrate key generate-node-key`, storing it in the directory specified by the `$BASE_PATH` environment variable. Prints the generated key and a success message in Chinese."
+            },
+            {
+              "name": "validator_node_init.sh",
+              "path": "scripts/temp/validator_node_init.sh",
+              "type": "file",
+              "summary": "Initializes a validator node. Generates a node key and inserts all required session keys (grandpa, babe, imonline, authority discovery, mixnet, beefy) into the keystore specified by `$BASE_PATH`. Uses environment variables `$SESSION_KEYS_PASSWORD` and `$SESSION_KEYS_INDEX` to derive the session keys via `--suri`. Prints a success message in Chinese. Contains a commented-out `sleep 1h` command."
+            }
+          ],
+          "summary": null
+        }
+      ],
+      "summary": null
+    }
+  ]
+}
