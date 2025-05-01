@@ -317,7 +317,7 @@ pub fn development_config() -> ChainSpec {
         // .with_properties(serde_json::from_str("{\"tokenDecimals\": 18, \"tokenSymbol\": \"UNIT\"}")
         .with_properties(
             serde_json::from_str(
-                "{\"isEthereum\": true, \"tokenDecimals\": 18, \"tokenSymbol\": \"UNIT\"}",
+                "{\"isEthereum\": true, \"tokenDecimals\": 18, \"tokenSymbol\": \"ROKO\"}",
             )
             .expect("Provided valid json map"),
         )
