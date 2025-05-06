@@ -3,7 +3,7 @@ use core::marker::PhantomData;
 use polkadot_sdk::sp_core::U256;
 use polkadot_sdk::frame_system;
 use pallet_evm::{
-    IsPrecompileResult, Precompile, PrecompileHandle, PrecompileResult, PrecompileSet, PrecompileOutput
+    IsPrecompileResult, Precompile, PrecompileHandle, PrecompileResult, PrecompileSet
 };
 
 use pallet_evm_precompile_modexp::Modexp;
