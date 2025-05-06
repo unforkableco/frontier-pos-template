@@ -1,0 +1,15 @@
+{
+  "name": "pwroko-validation-helpers",
+  "version": "1.0.0",
+  "description": "Helper scripts for pwRoko validation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^6.11.1"
+  }
+} 

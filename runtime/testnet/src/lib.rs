@@ -560,6 +560,13 @@ impl pallet_base_fee::Config for Runtime {
     type DefaultElasticity = DefaultElasticity;
 }
 
+// --- pwRoko Pallet Configuration ---
+impl pallet_pwroko::Config for Runtime {
+    type RuntimeEvent = RuntimeEvent;
+    type Currency = Balances; // Assuming Balances pallet provides the native currency
+    type WeightInfo = pallet_pwroko::weights::SubstrateWeight<Runtime>;
+}
+
 parameter_types! {
     pub BlockGasLimit: U256 = U256::from(BLOCK_GAS_LIMIT);
     pub const GasLimitPovSizeRatio: u64 = BLOCK_GAS_LIMIT.saturating_div(MAX_POV_SIZE);
@@ -2120,6 +2127,11 @@ mod runtime {
 
     #[runtime::pallet_index(83)]
     pub type BaseFee = pallet_base_fee;
+
+    // Local Pallets
+    #[runtime::pallet_index(84)]
+    pub type PwRoko = pallet_pwroko;
+
 }
 
 #[derive(Clone)]
