@@ -1,11 +1,12 @@
 use core::marker::PhantomData;
 // Use imports relative to the Substrate ecosystem, not polkadot_sdk directly unless necessary
 use sp_core::{H160, U256};
-use frame_system; // Keep this for frame_system::Config bound
+// use frame_system; // Removed - Keep this for frame_system::Config bound
 use pallet_evm::{
-    AddressMapping, Context, ExitError, ExitRevert, ExitReason, ExitSucceed, Precompile, PrecompileFailure, PrecompileHandle, PrecompileOutput, PrecompileResult,
+    // Removed Context, ExitReason
+    AddressMapping, ExitError, ExitRevert, ExitSucceed, Precompile, PrecompileFailure, PrecompileHandle, PrecompileOutput, PrecompileResult,
 };
-use sp_runtime::traits::Saturating; // Keep this
+use sp_runtime::{traits::Saturating, DispatchError}; // Add DispatchError, Keep Saturating
 
 // --- Custom Precompile for pwRoko ---
 
@@ -99,15 +100,18 @@ where
     }
 
     // Map pallet DispatchError to PrecompileFailure
-    fn map_dispatch_error(err: sp_runtime::DispatchError) -> PrecompileFailure {
+    fn map_dispatch_error(err: DispatchError) -> PrecompileFailure {
         let error_message: &'static str = err.into(); // Convert DispatchError to static str
         PrecompileFailure::Error {
+            // Use Revert to provide a reason string?
+            // exit_status: ExitRevert::Reverted,
+            // output: error_message.into(),
             exit_status: ExitError::Other(sp_std::borrow::Cow::Borrowed(error_message))
         }
     }
 
 
-    fn total_supply(handle: &mut impl PrecompileHandle) -> PrecompileResult {
+    fn total_supply(_handle: &mut impl PrecompileHandle) -> PrecompileResult { // handle -> _handle
         let total_supply_pallet = Pallet::<T>::total_supply();
         let total_supply_u256: U256 = total_supply_pallet.into();
 
@@ -115,12 +119,12 @@ where
         total_supply_u256.to_big_endian(&mut output);
 
         // TODO: Record cost based on weight
-        // handle.record_cost(Pallet::<T>::weight_info().total_supply())?;
+        // _handle.record_cost(Pallet::<T>::weight_info().total_supply())?;
 
         Ok(PrecompileOutput { exit_status: ExitSucceed::Returned, output: output.to_vec() })
     }
 
-    fn balance_of(handle: &mut impl PrecompileHandle, input: &[u8]) -> PrecompileResult {
+    fn balance_of(_handle: &mut impl PrecompileHandle, input: &[u8]) -> PrecompileResult { // handle -> _handle
         let owner_h160 = Self::read_address(input, 4)?;
         let owner_account_id = T::AddressMapping::into_account_id(owner_h160);
 
@@ -131,12 +135,12 @@ where
         balance_u256.to_big_endian(&mut output);
 
         // TODO: Record cost
-        // handle.record_cost(Pallet::<T>::weight_info().balance_of())?;
+        // _handle.record_cost(Pallet::<T>::weight_info().balance_of())?;
 
         Ok(PrecompileOutput { exit_status: ExitSucceed::Returned, output: output.to_vec() })
     }
 
-    fn allowance(handle: &mut impl PrecompileHandle, input: &[u8]) -> PrecompileResult {
+    fn allowance(_handle: &mut impl PrecompileHandle, input: &[u8]) -> PrecompileResult { // handle -> _handle
         let owner_h160 = Self::read_address(input, 4)?;
         let spender_h160 = Self::read_address(input, 36)?;
 
@@ -150,7 +154,7 @@ where
         allowance_u256.to_big_endian(&mut output);
 
         // TODO: Record cost
-        // handle.record_cost(Pallet::<T>::weight_info().allowance())?;
+        // _handle.record_cost(Pallet::<T>::weight_info().allowance())?;
 
         Ok(PrecompileOutput { exit_status: ExitSucceed::Returned, output: output.to_vec() })
     }

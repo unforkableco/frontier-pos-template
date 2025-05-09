@@ -31,8 +31,12 @@ pallet-evm = { workspace = true, default-features = false, optional = true }
 
 [dev-dependencies]
 sp-core = { git = "https://github.com/paritytech/polkadot-sdk", branch = "release-polkadot-v1.13.0", default-features = false }
+# Add EVM as a feature for testing precompiles
+# Remove specific features, rely on std for test helpers
+pallet-evm = { workspace = true, default-features = false }
+
 # --- Added for Benchmarking ---
-frame-benchmarking = { git = "https://github.com/paritytech/polkadot-sdk", branch = "release-polkadot-v1.13.0", default-features = false }
+frame-benchmarking = { workspace = true, default-features = false }
 # --- End Added for Benchmarking ---
 
 [features]

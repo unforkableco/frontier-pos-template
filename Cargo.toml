@@ -53,6 +53,9 @@ serde = { version = "1.0.197", default-features = false }
 serde_json = { version = "1.0.114", default-features = false }
 thiserror = { version = "1.0.48" }
 
+# Add frame-benchmarking here
+frame-benchmarking = { git = "https://github.com/paritytech/polkadot-sdk", branch = "release-polkadot-v1.13.0", default-features = false }
+
 # Frontier Client
 fc-api = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0" }
 fc-cli = { git="https://github.com/ChainSupport/frontier.git", branch="release-polkadot-v1.13.0", default-features = false }

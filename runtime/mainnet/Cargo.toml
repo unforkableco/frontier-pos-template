@@ -112,7 +112,7 @@ try-runtime = [
 	"pallet-pwroko/try-runtime",
 	#
 	"fp-self-contained/try-runtime",
-
+	
 
 ]
 
