@@ -55,6 +55,7 @@ pallet-evm-precompile-simple = { workspace = true }
 
 # Local Pallets
 pallet-pwroko = { path = "../pallets/pwroko", default-features = false, features = ["pallet-evm"] }
+pallet-custom-staking = { path = "../pallets/custom-staking", default-features = false }
 
 
 [build-dependencies]
