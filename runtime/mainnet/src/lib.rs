@@ -562,8 +562,9 @@ impl pallet_base_fee::Config for Runtime {
 // --- pwRoko Pallet Configuration ---
 impl pallet_pwroko::Config for Runtime {
     type RuntimeEvent = RuntimeEvent;
-    type Currency = Balances;
+    type Currency = Balances; // Assuming Balances pallet provides the native currency
     type WeightInfo = pallet_pwroko::weights::SubstrateWeight<Runtime>;
+    type MaxLocks = MaxLocks; // <<< ADD THIS LINE
 }
 
 parameter_types! {

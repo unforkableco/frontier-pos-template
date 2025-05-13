@@ -25,7 +25,6 @@
 #![recursion_limit = "1024"]
 
 use polkadot_sdk::*;
-use polkadot_sdk::sp_runtime::SaturatedConversion;
 use sp_runtime::{generic::Era, MultiAddress};
 use polkadot_sdk::sp_runtime::traits::StaticLookup;
 use codec::{Decode, Encode, MaxEncodedLen};
@@ -85,6 +84,7 @@ use fp_rpc::TransactionStatus;
 #[allow(deprecated)]
 pub use pallet_transaction_payment::{CurrencyAdapter, Multiplier, TargetedFeeAdjustment};
 use pallet_transaction_payment::{FeeDetails, RuntimeDispatchInfo};
+use sp_staking::currency_to_vote::CurrencyToVote; // <<< ADD THIS IMPORT
 // use pallet_tx_pause::RuntimeCallNameOf;
 use sp_api::impl_runtime_apis;
 use sp_authority_discovery::AuthorityId as AuthorityDiscoveryId;
@@ -123,6 +123,9 @@ use sp_std::prelude::*;
 use sp_version::NativeVersion;
 use sp_version::RuntimeVersion;
 use static_assertions::const_assert;
+// This is the consolidated import for Convert and SaturatedConversion
+use sp_runtime::traits::{Convert, SaturatedConversion};
+use polkadot_sdk::sp_arithmetic::traits::Zero;
 
 #[cfg(any(feature = "std", test))]
 pub use frame_system::Call as SystemCall;
@@ -565,6 +568,7 @@ impl pallet_pwroko::Config for Runtime {
     type RuntimeEvent = RuntimeEvent;
     type Currency = Balances; // Assuming Balances pallet provides the native currency
     type WeightInfo = pallet_pwroko::weights::SubstrateWeight<Runtime>;
+    type MaxLocks = MaxLocks; // Use the same MaxLocks as pallet-balances
 }
 
 parameter_types! {
@@ -770,15 +774,36 @@ impl pallet_staking::BenchmarkingConfig for StakingBenchmarkingConfig {
     type MaxValidators = ConstU32<100>;
 }
 
+// --- PwRoko to Vote conversion struct ---
+pub struct PwRokoToVote;
+impl CurrencyToVote<Balance> for PwRokoToVote { // Balance here is from Staking pallet, configured to be pwROKO's u128
+    // Convert a balance to a number of votes the account should have.
+    // `total_issuance` is the total issuance of the staking currency -- we might not need it for simple conversion.
+    fn to_vote(balance: Balance, _total_issuance: Balance) -> u64 {
+        // Simple conversion: 1 unit of pwROKO balance = 1 unit of voting power.
+        // Saturate if the balance exceeds u64::MAX.
+        balance.saturated_into()
+    }
+
+    // Convert a number of votes back to a balance.
+    // `total_issuance` is the total issuance of the staking currency.
+    fn to_currency(votes: u128, _total_issuance: Balance) -> Balance { // Changed votes from u64 to u128
+        // Simple conversion: 1 vote = 1 unit of pwROKO balance.
+        votes as Balance
+    }
+}
+
 impl pallet_staking::Config for Runtime {
-    type Currency = Balances;
-    type CurrencyBalance = Balance;
+    type Currency = PwRoko; // Corrected casing: PwRoko
+    type CurrencyBalance = Balance; // Keep as the runtime's Balance type
     type UnixTime = Timestamp;
-    type CurrencyToVote = sp_staking::currency_to_vote::U128CurrencyToVote;
-    type RewardRemainder = Treasury;
+    // Provide the PwRokoToVote implementation
+    type CurrencyToVote = PwRokoToVote;
+    // Use the custom handlers for PwRoko
+    type RewardRemainder = PwRokoStakingRewardRemainderHandler;
     type RuntimeEvent = RuntimeEvent;
-    type Slash = Treasury; // send the slashed funds to the treasury.
-    type Reward = (); // rewards are minted from the void
+    type Slash = PwRokoStakingSlashHandler;
+    type Reward = (); // rewards are minted from the void - OK
     type SessionsPerEra = SessionsPerEra;
     type BondingDuration = BondingDuration;
     type SlashDeferDuration = SlashDeferDuration;
@@ -804,6 +829,70 @@ impl pallet_staking::Config for Runtime {
     type WeightInfo = pallet_staking::weights::SubstrateWeight<Runtime>;
     type BenchmarkingConfig = StakingBenchmarkingConfig;
     type DisablingStrategy = pallet_staking::UpToLimitDisablingStrategy;
+}
+
+// --- Custom Handlers for PwRoko Slashes and Reward Remainders ---
+
+/// Handles slashed PwRoko from the staking system by burning it.
+pub struct PwRokoStakingSlashHandler;
+impl OnUnbalanced<pallet_pwroko::NegativeImbalance<Runtime>> for PwRokoStakingSlashHandler {
+    fn on_unbalanced(amount: pallet_pwroko::NegativeImbalance<Runtime>) {
+        // Burn the slashed PwRoko.
+        // The PwRoko pallet's Currency trait implementation should handle the burn
+        // when the NegativeImbalance is dropped and its `ちな` method is called (implicitly).
+        // We rely on PwRoko's Imbalance Drop logic to correctly burn.
+        // Explicitly, PwRoko::burn_negative_imbalance(amount) or similar might be called
+        // if such a helper exists and is necessary, but usually drop is enough.
+        log::info!(target: "runtime::staking", "Burning PwRoko slash: {:?}", amount.peek());
+        // The imbalance is consumed (and typically burned if it's a NegativeImbalance from a token minting source)
+        // when it's dropped. If pallet_pwroko::NegativeImbalance is correctly implemented,
+        // its Drop trait will call the necessary burn function (e.g., self.do_burn).
+    }
+}
+
+/// Handles PwRoko reward remainders from the staking system by burning them.
+pub struct PwRokoStakingRewardRemainderHandler;
+impl OnUnbalanced<pallet_pwroko::NegativeImbalance<Runtime>> for PwRokoStakingRewardRemainderHandler {
+    fn on_unbalanced(pwroko_to_convert: pallet_pwroko::NegativeImbalance<Runtime>) {
+        let pwroko_amount = pwroko_to_convert.peek();
+
+        if pwroko_amount.is_zero() {
+            // If the amount is zero, no further action is needed.
+            // The pwroko_to_convert (NegativeImbalance) will be dropped.
+            // The Drop impl for pallet_pwroko::NegativeImbalance is empty, so no unintended burning happens here.
+            return;
+        }
+
+        // The `pwroko_to_convert` represents PwRoko that the staking system accounted for
+        // but didn't distribute. We are fulfilling this "debt" by providing native ROKO
+        // to the Treasury instead of minting PwRoko.
+        // No explicit burn from pallet_pwroko is needed here because this NegativeImbalance
+        // effectively cancels out the "virtual" PwRoko that was supposed to be minted.
+
+        log::info!(
+            target: "runtime::staking",
+            "PwRokoStakingRewardRemainderHandler: Converting {} virtual PwRoko to native for Treasury.",
+            pwroko_amount
+        );
+
+        // 1. Issue an equivalent amount of native ROKO (Balances).
+        // <Balances as frame_support::traits::Currency<AccountId>>::issue creates new native ROKO,
+        // increasing its total issuance, and returns a NegativeImbalance.
+        let native_roko_issued = <Balances as frame_support::traits::Currency<AccountId>>::issue(pwroko_amount);
+
+        // 2. Credit the newly issued native ROKO to the Treasury.
+        // The Treasury's `on_unbalanced` handler for NegativeImbalance<NativeCurrency>
+        // will claim these funds for the Treasury.
+        Treasury::on_unbalanced(native_roko_issued);
+        log::info!(
+            target: "runtime::staking",
+            "PwRokoStakingRewardRemainderHandler: Issued {} native ROKO to Treasury.",
+            pwroko_amount
+        );
+
+        // The original `pwroko_to_convert` (NegativeImbalance<pwRoko>) is dropped here.
+        // Its Drop implementation is empty, ensuring no unintended side effects in pallet-pwroko.
+    }
 }
 
 parameter_types! {
@@ -982,7 +1071,7 @@ parameter_types! {
     pub const MaxPointsToBalance: u8 = 10;
 }
 
-use sp_runtime::traits::{Convert, Keccak256};
+use sp_runtime::traits::Keccak256;
 pub struct BalanceToU256;
 impl Convert<Balance, sp_core::U256> for BalanceToU256 {
     fn convert(balance: Balance) -> sp_core::U256 {

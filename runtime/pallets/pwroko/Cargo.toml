@@ -28,6 +28,7 @@ sp-core = { git = "https://github.com/paritytech/polkadot-sdk", branch = "releas
 pallet-evm = { workspace = true, default-features = false, optional = true }
 # --- End Added Dependencies ---
 
+log = { version = "0.4", default-features = false }
 
 [dev-dependencies]
 sp-core = { git = "https://github.com/paritytech/polkadot-sdk", branch = "release-polkadot-v1.13.0", default-features = false }
@@ -52,6 +53,7 @@ std = [
     "sp-io/std",
     "sp-core/std",
     "pallet-evm?/std",
+    "log/std",
 ]
 try-runtime = [
     "frame-support/try-runtime",

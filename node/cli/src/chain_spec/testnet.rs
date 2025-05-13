@@ -55,6 +55,7 @@ type AccountPublic = <Signature as Verify>::Signer;
 // const STAGING_TELEMETRY_URL: &str = "wss://telemetry.polkadot.io/submit/";
 const ENDOWMENT: Balance = 100 * DOLLARS;
 const STASH: Balance = ENDOWMENT;
+const PWROKO_STAKE_AMOUNT: Balance = 50 * DOLLARS;
 
 /// Node `ChainSpec` extensions.
 ///
@@ -174,7 +175,7 @@ fn configure_accounts(
     )>,
     initial_nominators: Vec<AccountId>,
     endowed_accounts: Option<Vec<AccountId>>,
-    stash: Balance,
+    _native_stash: Balance,
 ) -> (
     Vec<(
         AccountId,
@@ -213,7 +214,7 @@ fn configure_accounts(
 
     let stakers = initial_authorities
         .iter()
-        .map(|x| (x.0.clone(), x.0.clone(), stash, StakerStatus::Validator))
+        .map(|x| (x.0.clone(), x.0.clone(), PWROKO_STAKE_AMOUNT, StakerStatus::Validator))
         .collect::<Vec<_>>();
 
     let num_endowed_accounts = endowed_accounts.len();
@@ -251,9 +252,18 @@ pub fn testnet_genesis(
         STASH,
     );
 
+    // Prepare pwRoko genesis balances for initial authorities
+    let pwroko_balances = initial_authorities
+        .iter()
+        .map(|auth| (auth.0.clone(), PWROKO_STAKE_AMOUNT))
+        .collect::<Vec<_>>();
+
     serde_json::json!({
         "balances": {
             "balances": endowed_accounts.iter().cloned().map(|x| (x, ENDOWMENT)).chain(extra_endowed_accounts_balance).collect::<Vec<_>>(),
+        },
+        "pw_roko": {
+            "balances": pwroko_balances,
         },
         "session": {
             "keys": initial_authorities
