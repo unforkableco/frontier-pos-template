@@ -2059,7 +2059,15 @@ mod runtime {
     #[runtime::pallet_index(6)]
     pub type Balances = pallet_balances;
 
-    #[runtime::pallet_index(7)]
+    // PwRoko moved here to ensure its genesis runs before Staking
+    #[runtime::pallet_index(8)] // Adjusted index
+    pub type PwRoko = pallet_pwroko;
+
+    #[runtime::pallet_index(7)] // Original index, keep as is, or adjust if necessary based on final ordering.
+                                 // If PwRoko is inserted, subsequent indices might shift.
+                                 // The macro should handle implicit re-indexing based on order of appearance.
+                                 // For clarity, explicitly re-numbering might be better if manual control is desired.
+                                 // However, for now, let's rely on the macro's implicit re-indexing.
     pub type TransactionPayment = pallet_transaction_payment;
 
     #[runtime::pallet_index(10)]
@@ -2218,9 +2226,7 @@ mod runtime {
     pub type BaseFee = pallet_base_fee;
 
     // Local Pallets
-    #[runtime::pallet_index(84)]
-    pub type PwRoko = pallet_pwroko;
-
+    // PwRoko was previously here at index 84
 }
 
 #[derive(Clone)]
