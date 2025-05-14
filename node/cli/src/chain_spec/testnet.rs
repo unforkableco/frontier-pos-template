@@ -262,7 +262,7 @@ pub fn testnet_genesis(
         "balances": {
             "balances": endowed_accounts.iter().cloned().map(|x| (x, ENDOWMENT)).chain(extra_endowed_accounts_balance).collect::<Vec<_>>(),
         },
-        "pw_roko": {
+        "pwRoko": {
             "balances": pwroko_balances,
         },
         "session": {

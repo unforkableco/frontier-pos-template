@@ -9361,6 +9361,7 @@ dependencies = [
  "frame-benchmarking",
  "frame-support",
  "frame-system",
+ "log",
  "pallet-balances",
  "pallet-evm",
  "parity-scale-codec",
