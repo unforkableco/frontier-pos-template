@@ -7,6 +7,7 @@ use pallet_evm::{
     AddressMapping, ExitError, ExitRevert, ExitSucceed, Precompile, PrecompileFailure, PrecompileHandle, PrecompileOutput, PrecompileResult,
 };
 use sp_runtime::{traits::Saturating, DispatchError}; // Add DispatchError, Keep Saturating
+use frame_system::RawOrigin;
 
 // --- Custom Precompile for pwRoko ---
 
@@ -23,6 +24,9 @@ mod erc20_selectors {
     pub const NAME: [u8; 4] = [0x06, 0xfd, 0xde, 0x03]; // name()
     pub const SYMBOL: [u8; 4] = [0x95, 0xd8, 0x9b, 0x41]; // symbol()
     pub const DECIMALS: [u8; 4] = [0x31, 0x3c, 0xe5, 0x67]; // decimals()
+    // Lock and Unlock selectors
+    pub const LOCK: [u8; 4] = [0xdd, 0x46, 0x70, 0x64]; // lock(uint256)
+    pub const UNLOCK: [u8; 4] = [0x2f, 0x87, 0x88, 0xc4]; // unlock(uint256)
 }
 
 // Need to import pallet's Config, Pallet, BalanceOf etc.
@@ -61,6 +65,8 @@ where
             s if s == erc20_selectors::TRANSFER => Self::transfer(handle, &input),
             s if s == erc20_selectors::APPROVE => Self::approve(handle, &input),
             s if s == erc20_selectors::TRANSFER_FROM => Self::transfer_from(handle, &input),
+            s if s == erc20_selectors::LOCK => Self::lock(handle, &input),
+            s if s == erc20_selectors::UNLOCK => Self::unlock(handle, &input),
             _ => Err(PrecompileFailure::Revert {
                 exit_status: ExitRevert::Reverted, // Use Revert for unknown selector
                 output: "Unknown selector".into(),
@@ -232,6 +238,50 @@ where
                 let new_allowance = current_allowance.saturating_sub(amount_pallet);
                 Pallet::<T>::approve_spending(from_account_id, spender_account_id, new_allowance);
 
+                let mut output = [0u8; 32];
+                output[31] = 1; // Solidity true
+                Ok(PrecompileOutput { exit_status: ExitSucceed::Returned, output: output.to_vec() })
+            }
+            Err(e) => Err(Self::map_dispatch_error(e))
+        }
+    }
+
+    /// Lock native tokens to mint pwRoko tokens
+    fn lock(handle: &mut impl PrecompileHandle, input: &[u8]) -> PrecompileResult {
+        let context = handle.context();
+        let amount_u256 = Self::read_uint256(input, 4)?;
+        let amount_pallet = Self::u256_to_balance(amount_u256)?;
+
+        let account_id = T::AddressMapping::into_account_id(context.caller);
+        let origin = RawOrigin::Signed(account_id).into();
+
+        // TODO: Record cost based on weight
+        // handle.record_cost(Pallet::<T>::weight_info().lock())?;
+
+        match Pallet::<T>::lock(origin, amount_pallet) {
+            Ok(_) => {
+                let mut output = [0u8; 32];
+                output[31] = 1; // Solidity true
+                Ok(PrecompileOutput { exit_status: ExitSucceed::Returned, output: output.to_vec() })
+            }
+            Err(e) => Err(Self::map_dispatch_error(e))
+        }
+    }
+
+    /// Unlock native tokens by burning pwRoko tokens
+    fn unlock(handle: &mut impl PrecompileHandle, input: &[u8]) -> PrecompileResult {
+        let context = handle.context();
+        let amount_u256 = Self::read_uint256(input, 4)?;
+        let amount_pallet = Self::u256_to_balance(amount_u256)?;
+
+        let account_id = T::AddressMapping::into_account_id(context.caller);
+        let origin = RawOrigin::Signed(account_id).into();
+
+        // TODO: Record cost based on weight
+        // handle.record_cost(Pallet::<T>::weight_info().unlock())?;
+
+        match Pallet::<T>::unlock(origin, amount_pallet) {
+            Ok(_) => {
                 let mut output = [0u8; 32];
                 output[31] = 1; // Solidity true
                 Ok(PrecompileOutput { exit_status: ExitSucceed::Returned, output: output.to_vec() })

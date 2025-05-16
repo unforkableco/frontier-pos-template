@@ -102,6 +102,8 @@ use sp_inherents::{CheckInherentsResult, InherentData};
 use pallet_ethereum::{Call::transact, Transaction as EthereumTransaction};
 use pallet_evm::{EnsureAccountId20, IdentityAddressMapping};
 mod precompiles;
+mod staking_precompile;
+mod balances_precompile;
 use frame_support::traits::FindAuthor;
 use precompiles::FrontierPrecompiles;
 use sp_runtime::{
